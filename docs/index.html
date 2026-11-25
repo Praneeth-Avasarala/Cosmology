@@ -581,7 +581,7 @@
     .node-content details.heading-section > summary.heading-summary {
       position: relative;
       cursor: pointer;
-      user-select: none;
+      user-select: text;
       list-style: none;
       padding-left: 1.15em;
     }
@@ -613,7 +613,7 @@
       padding-left: 1.15em;
       cursor: pointer;
       list-style: none;
-      user-select: none;
+      user-select: text;
     }
     .list-fold > summary.list-summary::-webkit-details-marker { display: none; }
     .list-fold > summary.list-summary::before {
@@ -748,6 +748,15 @@
       padding: 6px 8px;
       text-align: left;
     }
+    /* Allow viewers to select and copy card text */
+	.node-content,
+	.node-content *,
+	.md-card-preview,
+	.md-card-preview *,
+	.md-card-preview-text {
+		-webkit-user-select: text;
+		user-select: text;
+	}
     .file-chip, .link-chip {
       display: inline-block;
       padding: 6px 10px;
@@ -1180,7 +1189,7 @@
     .single-page-body details.heading-section > summary.heading-summary {
       position: relative;
       cursor: pointer;
-      user-select: none;
+      user-select: text;
       list-style: none;
       padding-left: 1.15em;
     }
@@ -1680,7 +1689,7 @@
     .md-card-preview details.heading-section > summary.heading-summary {
       position: relative;
       cursor: pointer;
-      user-select: none;
+      user-select: text;
       list-style: none;
       padding-left: 1.15em;
     }
@@ -1904,8 +1913,7 @@
           <summary class="list-summary">Python packages</summary>
           <ul><li>Astropy, Astroquery</li></ul>
         </details>
-      </li></ul>
-<p>-</p></details></details></div></div>
+      </li></ul></details></details></div></div>
 <div
     id="node-97ae36b3bc312ba4"
     class="node text"
@@ -4095,6 +4103,13 @@
 		const node = target?.closest(".node[data-node-id]");
 
 		if (!node) return;
+		
+		// Allow native text selection inside card content.
+        // Do not initiate card movement when interacting with content.
+        
+        if (target.closest(".node-content, .md-card-preview, .md-card-preview-text")) {
+        return;
+        }
 
 		// Preserve normal interaction with buttons, links and embedded content.
 		if (target.closest(
