@@ -5010,22 +5010,28 @@
       viewport.addEventListener("pointerdown", startZoomAreaSelection, true);
       viewport.addEventListener("pointerdown", startCardMove);
       viewport.addEventListener("wheel", handleCanvasWheel, { passive: false });
-      // Intercept pinch gestures only inside the canvas viewport. Single-finger
-      // touch panning and normal taps remain native browser interactions.
-      viewport.addEventListener("touchstart", (event) => {
+      // Detect pinch gestures at the document level so a gesture that starts
+      // near or slightly across the viewport edge is still recognized. The
+      // midpoint determines whether the gesture belongs to the canvas.
+      document.addEventListener("touchstart", (event) => {
         if (event.touches.length !== 2) {
           touchPinchState = null;
           return;
         }
         const first = event.touches[0];
         const second = event.touches[1];
+        const midpointX = (first.clientX + second.clientX) / 2;
+        const midpointY = (first.clientY + second.clientY) / 2;
+        const rect = viewport.getBoundingClientRect();
+        if (midpointX < rect.left || midpointX > rect.right || midpointY < rect.top || midpointY > rect.bottom) {
+          touchPinchState = null;
+          return;
+        }
         const deltaX = second.clientX - first.clientX;
         const deltaY = second.clientY - first.clientY;
-        touchPinchState = {
-          distance: Math.max(1, Math.hypot(deltaX, deltaY)),
-        };
-      }, { passive: true });
-      viewport.addEventListener("touchmove", (event) => {
+        touchPinchState = { distance: Math.max(1, Math.hypot(deltaX, deltaY)) };
+      }, { passive: true, capture: true });
+      document.addEventListener("touchmove", (event) => {
         if (event.touches.length !== 2 || !touchPinchState) return;
         event.preventDefault();
         const first = event.touches[0];
@@ -5037,13 +5043,10 @@
         const midpointY = (first.clientY + second.clientY) / 2;
         zoomAtPoint(midpointX, midpointY, distance / touchPinchState.distance);
         touchPinchState.distance = distance;
-      }, { passive: false });
-      const resetTouchPinch = () => {
-        if (!viewport) return;
-        touchPinchState = null;
-      };
-      viewport.addEventListener("touchend", resetTouchPinch, { passive: true });
-      viewport.addEventListener("touchcancel", resetTouchPinch, { passive: true });
+      }, { passive: false, capture: true });
+      const resetTouchPinch = () => { touchPinchState = null; };
+      document.addEventListener("touchend", resetTouchPinch, { passive: true, capture: true });
+      document.addEventListener("touchcancel", resetTouchPinch, { passive: true, capture: true });
       viewport.addEventListener("dragstart", (event) => {
         if (zoomAreaDrag || canvasPanDrag || cardResizeDrag || cardMoveDrag) event.preventDefault();
       });
