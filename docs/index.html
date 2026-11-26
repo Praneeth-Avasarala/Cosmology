@@ -1759,8 +1759,8 @@
         grid-row: 2;
         justify-self: end;
         min-width: 80px;
-        min-height: 34px;
-        padding: 6px 10px;
+        min-height: 44px;
+        padding: 8px 12px;
         font-size: 0.8rem;
       }
       .page-header-meta {
@@ -1795,7 +1795,12 @@
         padding: max(14px, env(safe-area-inset-top, 0px)) 16px 14px;
       }
       .contents-close-button {
-        min-height: 40px;
+        min-height: 44px;
+      }
+      .contents-link {
+        display: flex;
+        align-items: center;
+        min-height: 44px;
       }
       .contents-navigation {
         padding: 10px 16px 24px;
@@ -1827,10 +1832,16 @@
         font-size: 16px;
       }
       .search-close-button {
-        min-height: 40px;
+        min-height: 44px;
       }
       .search-results {
         overscroll-behavior: contain;
+      }
+      .toolbar button,
+      .toolbar select,
+      .toolbar-menu > summary {
+        min-height: 44px;
+        padding: 9px 12px;
       }
       .toolbar-menu-content {
         max-width: calc(100vw - 32px);
