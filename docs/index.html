@@ -2483,6 +2483,7 @@
       let canvasBoundsHeight = 2820;
       let zoomAreaDrag = null;
       let canvasPanDrag = null;
+      let touchPinchState = null;
       let cardResizeDrag = null;
       let cardMoveDrag = null;
       let cancelledZoomAreaPointerId = null;
@@ -5009,6 +5010,40 @@
       viewport.addEventListener("pointerdown", startZoomAreaSelection, true);
       viewport.addEventListener("pointerdown", startCardMove);
       viewport.addEventListener("wheel", handleCanvasWheel, { passive: false });
+      // Intercept pinch gestures only inside the canvas viewport. Single-finger
+      // touch panning and normal taps remain native browser interactions.
+      viewport.addEventListener("touchstart", (event) => {
+        if (event.touches.length !== 2) {
+          touchPinchState = null;
+          return;
+        }
+        const first = event.touches[0];
+        const second = event.touches[1];
+        const deltaX = second.clientX - first.clientX;
+        const deltaY = second.clientY - first.clientY;
+        touchPinchState = {
+          distance: Math.max(1, Math.hypot(deltaX, deltaY)),
+        };
+      }, { passive: true });
+      viewport.addEventListener("touchmove", (event) => {
+        if (event.touches.length !== 2 || !touchPinchState) return;
+        event.preventDefault();
+        const first = event.touches[0];
+        const second = event.touches[1];
+        const deltaX = second.clientX - first.clientX;
+        const deltaY = second.clientY - first.clientY;
+        const distance = Math.max(1, Math.hypot(deltaX, deltaY));
+        const midpointX = (first.clientX + second.clientX) / 2;
+        const midpointY = (first.clientY + second.clientY) / 2;
+        zoomAtPoint(midpointX, midpointY, distance / touchPinchState.distance);
+        touchPinchState.distance = distance;
+      }, { passive: false });
+      const resetTouchPinch = () => {
+        if (!viewport) return;
+        touchPinchState = null;
+      };
+      viewport.addEventListener("touchend", resetTouchPinch, { passive: true });
+      viewport.addEventListener("touchcancel", resetTouchPinch, { passive: true });
       viewport.addEventListener("dragstart", (event) => {
         if (zoomAreaDrag || canvasPanDrag || cardResizeDrag || cardMoveDrag) event.preventDefault();
       });
