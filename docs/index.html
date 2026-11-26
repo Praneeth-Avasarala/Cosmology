@@ -613,8 +613,46 @@
       padding-bottom: 6px;
       border-bottom: 1px solid #404855;
     }
-    @media (hover: none) {
-      .node-resize-handle { opacity: 1; pointer-events: auto; }
+    @media (hover: none), (pointer: coarse) {
+      /* Keep the visible resize grip compact while giving fingers a larger target. */
+      .node-resize-handle {
+        width: 32px;
+        height: 32px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        opacity: 1;
+        pointer-events: auto;
+        touch-action: none;
+      }
+      .node-resize-handle::after {
+        content: "";
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border: 2px solid #2b2f36;
+        border-radius: 50%;
+        background: #7cb7ff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+      .node-drag-strip {
+        top: 0;
+        left: 50%;
+        right: auto;
+        width: 76px;
+        height: 36px;
+        transform: translateX(-50%);
+        touch-action: none;
+      }
+      .node-drag-strip::after {
+        top: 10px;
+        width: 36px;
+        height: 4px;
+        opacity: 0.8;
+      }
     }
     .node-content {
       line-height: 1.55;
@@ -4537,7 +4575,7 @@
 	  }
 	  
 	  function startCardMove(event) {
-		if (event.pointerType !== "mouse" || event.button !== 0) return;
+		if ((event.pointerType !== "mouse" && event.pointerType !== "touch" && event.pointerType !== "pen") || event.button !== 0) return;
 
 		const target = event.target instanceof Element ? event.target : null;
 		const node = target?.closest(".node[data-node-id]");
