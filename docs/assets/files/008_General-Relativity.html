@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="canvas-html-exporter v1.6.0">
+  <meta name="canvas-html-exporter-build" content="1.6.0-shiki">
+  <title>General-Relativity</title>
+  <!-- Exported by canvas-html-exporter v1.6.0 -->
+  <style>
+    :root { --canvas-color-0: rgb(171, 171, 171); --canvas-color-0-bg: rgba(171, 171, 171, 0.18); --canvas-color-1: rgb(251, 70, 76); --canvas-color-1-bg: rgba(251, 70, 76, 0.18); --canvas-color-2: rgb(233, 151, 63); --canvas-color-2-bg: rgba(233, 151, 63, 0.18); --canvas-color-3: rgb(224, 222, 113); --canvas-color-3-bg: rgba(224, 222, 113, 0.18); --canvas-color-4: rgb(68, 207, 110); --canvas-color-4-bg: rgba(68, 207, 110, 0.18); --canvas-color-5: rgb(83, 223, 221); --canvas-color-5-bg: rgba(83, 223, 221, 0.18); --canvas-color-6: rgb(168, 130, 255); --canvas-color-6-bg: rgba(168, 130, 255, 0.18); }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #15181d;
+      color: #e7edf5;
+      line-height: 1.65;
+    }
+    .md-page-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      margin-bottom: 1em;
+    }
+    .md-page-back-link,
+    .md-page-canvas-link {
+      color: #7cb7ff;
+      text-decoration: none;
+      font-size: 0.95em;
+      font-weight: 600;
+    }
+    .md-page-back-link:hover,
+    .md-page-canvas-link:hover {
+      text-decoration: underline;
+    }
+    .md-page {
+      max-width: 960px;
+      margin: 32px auto;
+      padding: 32px;
+      background: #1d2229;
+      border: 1px solid #313843;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+    h1, h2, h3, h4, h5, h6 { line-height: 1.25; margin-top: 1.1em; }
+    h1 { margin-top: 0; }
+    details.heading-section { margin: 0.8em 0; }
+    details.heading-section > summary.heading-summary {
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      list-style: none;
+    }
+    details.heading-section > summary.heading-summary::-webkit-details-marker { display: none; }
+    details.heading-section > summary.heading-summary h1,
+    details.heading-section > summary.heading-summary h2,
+    details.heading-section > summary.heading-summary h3,
+    details.heading-section > summary.heading-summary h4,
+    details.heading-section > summary.heading-summary h5,
+    details.heading-section > summary.heading-summary h6 {
+      display: inline-block;
+      margin: 0 0.35em 0 0;
+      vertical-align: middle;
+    }
+    details.heading-section > summary.heading-summary::before { content: "⌄"; position: absolute; left: -1em; top: 50%; transform: translateY(-50%); line-height: 1; color: #aeb8c5; font-weight: 600; opacity: 0; transition: opacity 0.12s ease; }
+    details.heading-section:not([open]) > summary.heading-summary::before { content: "›"; }
+    details.heading-section > summary.heading-summary:hover::before,
+    details.heading-section > summary.heading-summary:focus-visible::before { opacity: 1; }
+    
+        strong { font-weight: 700; }
+    em { font-style: italic; }
+    del { text-decoration: line-through; color: rgb(219, 219, 219); }
+    a { color: #7cb7ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul, ol { margin: 0.65em 0; padding-left: 2em; }
+    code {
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 0.1em 0.35em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.92em;
+    }
+    pre, .shiki {
+      margin: 0.9em 0;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.28);
+      overflow-x: auto;
+    }
+    pre code, .shiki code { padding: 0; background: transparent; }
+    blockquote {
+      margin: 0.9em 0;
+      padding-left: 12px;
+      border-left: 3px solid #7cb7ff;
+      color: #aeb8c5;
+    }
+    .callout { border-radius: 6px; margin: 0.9em 0; overflow: hidden; border: 1px solid #888; }
+    .callout-title { padding: 5px 10px; font-weight: 600; font-size: 0.88em; letter-spacing: 0.01em; }
+    .callout-content { padding: 4px 10px 6px; }
+    .callout-icon { margin-right: 5px; font-style: normal; display: inline-flex; align-items: center; vertical-align: -0.12em; }
+    .callout-icon svg { width: 1em; height: 1em; fill: currentColor; display: block; }
+        .callout-note { border-color: hsl(225, 61%, 75%); }
+    .callout-note .callout-title { background: color-mix(in srgb, hsl(225, 61%, 75%) 18%, transparent); color: hsl(225, 61%, 75%); }
+    .callout-info { border-color: hsl(225, 61%, 75%); }
+    .callout-info .callout-title { background: color-mix(in srgb, hsl(225, 61%, 75%) 18%, transparent); color: hsl(225, 61%, 75%); }
+    .callout-todo { border-color: hsl(225, 61%, 75%); }
+    .callout-todo .callout-title { background: color-mix(in srgb, hsl(225, 61%, 75%) 18%, transparent); color: hsl(225, 61%, 75%); }
+    .callout-abstract { border-color: hsl(195, 69%, 58%); }
+    .callout-abstract .callout-title { background: color-mix(in srgb, hsl(195, 69%, 58%) 18%, transparent); color: hsl(195, 69%, 58%); }
+    .callout-summary { border-color: hsl(195, 69%, 58%); }
+    .callout-summary .callout-title { background: color-mix(in srgb, hsl(195, 69%, 58%) 18%, transparent); color: hsl(195, 69%, 58%); }
+    .callout-tldr { border-color: hsl(195, 69%, 58%); }
+    .callout-tldr .callout-title { background: color-mix(in srgb, hsl(195, 69%, 58%) 18%, transparent); color: hsl(195, 69%, 58%); }
+    .callout-tip { border-color: hsl(195, 69%, 58%); }
+    .callout-tip .callout-title { background: color-mix(in srgb, hsl(195, 69%, 58%) 18%, transparent); color: hsl(195, 69%, 58%); }
+    .callout-hint { border-color: hsl(195, 69%, 58%); }
+    .callout-hint .callout-title { background: color-mix(in srgb, hsl(195, 69%, 58%) 18%, transparent); color: hsl(195, 69%, 58%); }
+    .callout-important { border-color: hsl(195, 69%, 58%); }
+    .callout-important .callout-title { background: color-mix(in srgb, hsl(195, 69%, 58%) 18%, transparent); color: hsl(195, 69%, 58%); }
+    .callout-success { border-color: hsl(124, 48%, 54%); }
+    .callout-success .callout-title { background: color-mix(in srgb, hsl(124, 48%, 54%) 18%, transparent); color: hsl(124, 48%, 54%); }
+    .callout-check { border-color: hsl(124, 48%, 54%); }
+    .callout-check .callout-title { background: color-mix(in srgb, hsl(124, 48%, 54%) 18%, transparent); color: hsl(124, 48%, 54%); }
+    .callout-done { border-color: hsl(124, 48%, 54%); }
+    .callout-done .callout-title { background: color-mix(in srgb, hsl(124, 48%, 54%) 18%, transparent); color: hsl(124, 48%, 54%); }
+    .callout-warning { border-color: hsl(26, 85%, 63%); }
+    .callout-warning .callout-title { background: color-mix(in srgb, hsl(26, 85%, 63%) 18%, transparent); color: hsl(26, 85%, 63%); }
+    .callout-caution { border-color: hsl(26, 85%, 63%); }
+    .callout-caution .callout-title { background: color-mix(in srgb, hsl(26, 85%, 63%) 18%, transparent); color: hsl(26, 85%, 63%); }
+    .callout-attention { border-color: hsl(26, 85%, 63%); }
+    .callout-attention .callout-title { background: color-mix(in srgb, hsl(26, 85%, 63%) 18%, transparent); color: hsl(26, 85%, 63%); }
+    .callout-question { border-color: hsl(26, 85%, 63%); }
+    .callout-question .callout-title { background: color-mix(in srgb, hsl(26, 85%, 63%) 18%, transparent); color: hsl(26, 85%, 63%); }
+    .callout-help { border-color: hsl(26, 85%, 63%); }
+    .callout-help .callout-title { background: color-mix(in srgb, hsl(26, 85%, 63%) 18%, transparent); color: hsl(26, 85%, 63%); }
+    .callout-faq { border-color: hsl(26, 85%, 63%); }
+    .callout-faq .callout-title { background: color-mix(in srgb, hsl(26, 85%, 63%) 18%, transparent); color: hsl(26, 85%, 63%); }
+    .callout-danger { border-color: hsl(4, 74%, 74%); }
+    .callout-danger .callout-title { background: color-mix(in srgb, hsl(4, 74%, 74%) 18%, transparent); color: hsl(4, 74%, 74%); }
+    .callout-error { border-color: hsl(4, 74%, 74%); }
+    .callout-error .callout-title { background: color-mix(in srgb, hsl(4, 74%, 74%) 18%, transparent); color: hsl(4, 74%, 74%); }
+    .callout-failure { border-color: hsl(4, 74%, 74%); }
+    .callout-failure .callout-title { background: color-mix(in srgb, hsl(4, 74%, 74%) 18%, transparent); color: hsl(4, 74%, 74%); }
+    .callout-fail { border-color: hsl(4, 74%, 74%); }
+    .callout-fail .callout-title { background: color-mix(in srgb, hsl(4, 74%, 74%) 18%, transparent); color: hsl(4, 74%, 74%); }
+    .callout-missing { border-color: hsl(4, 74%, 74%); }
+    .callout-missing .callout-title { background: color-mix(in srgb, hsl(4, 74%, 74%) 18%, transparent); color: hsl(4, 74%, 74%); }
+    .callout-bug { border-color: hsl(4, 74%, 74%); }
+    .callout-bug .callout-title { background: color-mix(in srgb, hsl(4, 74%, 74%) 18%, transparent); color: hsl(4, 74%, 74%); }
+    .callout-example { border-color: hsl(267, 52%, 75%); }
+    .callout-example .callout-title { background: color-mix(in srgb, hsl(267, 52%, 75%) 18%, transparent); color: hsl(267, 52%, 75%); }
+    .callout-quote { border-color: #9e9e9e; }
+    .callout-quote .callout-title { background: rgba(158, 158, 158, 0.18); color: #9e9e9e; }
+    .callout-cite { border-color: #9e9e9e; }
+    .callout-cite .callout-title { background: rgba(158, 158, 158, 0.18); color: #9e9e9e; }
+    .callout-settings { border-color: hsl(225, 61%, 75%); }
+    .callout-settings .callout-title { background: color-mix(in srgb, hsl(225, 61%, 75%) 18%, transparent); color: hsl(225, 61%, 75%); }
+    .callout-award { border-color: hsl(225, 61%, 75%); }
+    .callout-award .callout-title { background: color-mix(in srgb, hsl(225, 61%, 75%) 18%, transparent); color: hsl(225, 61%, 75%); }
+    details.callout { display: block; }
+    details.callout > summary.callout-title { cursor: pointer; list-style: none; user-select: none; }
+    details.callout > summary.callout-title::-webkit-details-marker { display: none; }
+    details.callout > summary.callout-title::after { content: " ›"; font-size: 0.85em; }
+    details.callout[open] > summary.callout-title::after { content: " ⌄"; }
+    hr { border: none; border-top: 1px solid #404855; margin: 1em 0; }
+    img { display: block; max-width: 100%; border-radius: 8px; margin: 0.8em 0; }
+    table { border-collapse: collapse; width: auto; max-width: 100%; margin: 0.8em 0; }
+    th, td { border: 1px solid #313843; padding: 8px 10px; text-align: left; }
+    .md-embed-block {
+      margin: 0.8em 0;
+    }
+    .pdf-embed-block {
+      margin: 0.8em 0;
+      border: 1px solid #313843;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #2b2f36;
+    }
+    .pdf-embed-block iframe {
+      display: block;
+      width: 100%;
+      min-height: 420px;
+      border: none;
+      background: #1d2229;
+    }
+    .file-embed-block,
+    .media-embed-block {
+      margin: 0.8em 0;
+    }
+    .media-embed-block audio,
+    .media-embed-block video { display: block; width: 100%; max-width: 100%; }
+    .file-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      padding: 0.4em 0.7em;
+      border-radius: 999px;
+      border: 1px solid #313843;
+      background: #2b2f36;
+      color: #e7edf5;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .file-chip:hover {
+      text-decoration: underline;
+    }
+    mark.search-highlight {
+      background: rgba(255, 214, 10, 0.45);
+      color: inherit;
+      padding: 0 0.08em;
+      border-radius: 3px;
+    }
+    :target,
+    .target-highlight {
+      background: rgba(255, 214, 10, 0.45);
+      border-radius: 3px;
+      box-shadow: 0 0 0 3px rgba(255, 214, 10, 0.2);
+    }
+    details.target-highlight {
+      padding: 0.08em 0.2em;
+    }
+    .unresolved-link {
+      color: #d64545;
+      font-style: italic;
+    }
+    
+    :root { --contents-panel-width: min(420px, calc(100vw - 32px)); }
+    body { transition: padding-left 0.16s ease; }
+    body.contents-open { padding-left: var(--contents-panel-width); }
+    .page-navigation-button {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: #7cb7ff;
+      font: inherit;
+      font-size: 0.95em;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .page-navigation-button:hover,
+    .page-navigation-button.is-active {
+      text-decoration: underline;
+    }
+    .contents-overlay {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 40;
+      width: var(--contents-panel-width);
+    }
+    .contents-overlay[hidden] { display: none; }
+    .contents-panel {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #313843;
+      background: #1d2229;
+      box-shadow: 12px 0 36px rgba(0,0,0,0.22);
+    }
+    .contents-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid #313843;
+    }
+    .contents-header h2 { margin: 0; font-size: 1.15rem; }
+    .contents-navigation {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;
+      padding: 10px 20px 24px;
+    }
+    .contents-section h3 {
+      margin: 16px 0 8px;
+      color: #aeb8c5;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .contents-list { list-style: none; margin: 0; padding: 0; }
+    .contents-list .contents-list {
+      margin-left: 10px;
+      padding-left: 14px;
+      border-left: 1px solid #313843;
+    }
+    .contents-item { margin: 2px 0; }
+    .contents-link {
+      display: block;
+      padding: 7px 9px;
+      border-radius: 7px;
+      color: #7cb7ff;
+      line-height: 1.35;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+    .contents-link:hover { background: rgba(255,255,255,0.06); text-decoration: none; }
+    .contents-link.is-current {
+      background: rgba(255,255,255,0.06);
+      color: #e7edf5;
+      font-weight: 600;
+    }
+    .contents-empty { margin: 18px 0 0; color: #aeb8c5; font-size: 0.9rem; }
+
+  </style>
+</head>
+<body>
+  <main class="md-page">
+    <div class="md-page-toolbar">
+      
+      <a class="md-page-canvas-link" href="../../index.html" data-restore-canvas-view="root">Canvas</a>
+      <button id="page-navigation-button" class="page-navigation-button" type="button" aria-pressed="false">Navigation</button>
+    </div>
+    <h1>General-Relativity</h1>
+    <details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="concepts-used">concepts used</h1></summary><p><a href="009_special-relativity.html">special-relativity</a><br>
+<a href="010_Einstein-field-equations.html">Einstein-field-equations</a></p></details>
+<details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="gr-axioms">GR axioms</h1></summary><ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Four Physical axioms </summary>
+          <ol><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Speed of light is constant</summary>
+          <ul><li>invariant spacetime interval between two infinitesimal events for any observer</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Weak equivalence principle </summary>
+          <ul><li>trajectory of a freely falling point mass in a gravitational field depends only on its initial position and velocity, and is completely independent of its mass, composition or internal structure</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Einstein equivalence principle </summary>
+          <ul><li>locally-flat</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Principle of general covariance</summary>
+          <ul><li>same mathematical form in all coordinate systems</li></ul>
+        </details>
+      </li></ol>
+        </details>
+      </li></ul>
+<ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">To turn these physical axioms into a working set of equations (EFE), three strict mathematical boundaries are introduced</summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Pseudo-riemannian manifold</summary>
+          <ul><li>smooth, continuous 4D manifold</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Metric compatibility</summary>
+          <ul><li>covariant derivative of metric is strictly zero. </li><li>Physically, this means that as you move a measuring rod or a clock along a path, the intrinsic definition of &quot;length&quot; or &quot;time interval&quot; doesn&#39;t spontaneously stretch or shrink. (what does this physically mean)</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Torsion-free </summary>
+          <ul><li>symmetric &quot;connection&quot; tensor (how vectors change across space)</li><li>ensures that infinitesimally small vector loops close perfectly</li></ul>
+        </details>
+      </li></ul>
+        </details>
+      </li></ul></details>
+<details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="testing-each-axiom">Testing each axiom</h1></summary><ul><li>Equivalence principle - MICROSCOPE satellite</li><li></li></ul>
+<details class="heading-section heading-section-h3" open><summary class="heading-summary"><h3 id="lecture-notes">Lecture Notes -</h3></summary><p>The physics of spacetime (UG lvl course) - <a href="https://web.mit.edu/sahughes/www/8.033/index.html" target="_blank" rel="noopener noreferrer">https://web.mit.edu/sahughes/www/8.033/index.html</a><br>
+ General relativity (PG lvl course) - <a href="https://web.mit.edu/sahughes/www/8.962/index.html" target="_blank" rel="noopener noreferrer">https://web.mit.edu/sahughes/www/8.962/index.html</a></p></details></details>
+<details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="from-e-l-to-g1–g4-the-mathematical-chain">From E + L to G1–G4: the mathematical chain</h1></summary><p>I&#39;ll follow the same quarantine rules. I&#39;m not importing GR as an authority. I&#39;m building from the cards and seeing what mathematics is forced.</p>
+<hr>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="recap-of-the-stack-at-this-stage">Recap of the stack at this stage</h2></summary><ul><li><strong>L:</strong> Light speed in vacuum is (c) for every inertial observer.</li><li><strong>E:</strong> Locally, free fall is indistinguishable from floating in deep space; uniform acceleration is indistinguishable from a uniform gravitational field.</li><li><strong>S:</strong> Simultaneity is frame-dependent.</li><li><strong>I:</strong> There is an invariant spacetime interval.</li></ul>
+<p>The question: how do E + L force us into curved spacetime, geodesics, a curvature–matter coupling, and a Newtonian limit?</p>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="step-1-e-forces-gravity-to-be-geometry-not-force">Step 1: E forces gravity to be geometry, not force</h2></summary><p>In Newtonian mechanics, a particle in a gravitational field obeys</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi mathvariant="bold">x</mi><mo>¨</mo></mover><mo>=</mo><mo>−</mo><mi mathvariant="normal">∇</mi><mi mathvariant="normal">Φ</mi></mrow><annotation encoding="application/x-tex">\ddot{\mathbf{x}} = -\nabla \Phi</annotation></semantics></math></span>
+<p>The mass (m) cancels. Why? Because inertial mass equals gravitational charge. That is a coincidence unless gravity is not a force.</p>
+<p><strong>E says:</strong> in a freely falling frame, gravity is locally absent. So there exists a coordinate system where a freely falling particle has</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><msup><mi>x</mi><mi>μ</mi></msup></mrow><mrow><mi>d</mi><msup><mi>τ</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\frac{d^2 x^\mu}{d\tau^2} = 0</annotation></semantics></math></span>
+<p>But this frame is only local. You cannot cover all of spacetime with one freely falling frame because different regions fall differently relative to each other. The obstruction to patching these local inertial frames together is <strong>curvature</strong>.</p>
+<p>So E forces:</p>
+<blockquote><p><strong>G1 (candidate):</strong> Spacetime is curved. The local inertial frames are tangent spaces, not global frames.</p></blockquote>
+<p>This is not yet a law. It is a structural consequence of E plus the fact that gravity is not uniform everywhere.</p>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="step-2-l-fixes-the-causal-structure-and-the-metric">Step 2: L fixes the causal structure and the metric</h2></summary><p>L says light travels at (c) for all inertial observers. In a local inertial frame, the invariant interval for light is</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><mo>−</mo><msup><mi>c</mi><mn>2</mn></msup><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup><mo>+</mo><mi>d</mi><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mi>d</mi><msup><mi>y</mi><mn>2</mn></msup><mo>+</mo><mi>d</mi><msup><mi>z</mi><mn>2</mn></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">ds^2 = -c^2 dt^2 + dx^2 + dy^2 + dz^2 = 0</annotation></semantics></math></span>
+<p>To make this invariant under general coordinate changes, introduce a metric (g_{\mu\nu}(x)):</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><msup><mi>s</mi><mn>2</mn></msup><mo>=</mo><msub><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mtext> </mtext><mi>d</mi><msup><mi>x</mi><mi>μ</mi></msup><mi>d</mi><msup><mi>x</mi><mi>ν</mi></msup></mrow><annotation encoding="application/x-tex">ds^2 = g_{\mu\nu}(x)\, dx^\mu dx^\nu</annotation></semantics></math></span>
+<p>L requires:</p>
+<ul><li>The metric has signature ((-,+,+,+)).</li><li>Null paths (ds^2 = 0) define light cones.</li><li>The speed of light in any local inertial frame is (c).</li></ul>
+<p>So L forces the metric to be the fundamental object. It also tells us that the causal structure is a <strong>light cone structure</strong>, and that light follows null paths.</p>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="step-3-e-forces-free-particles-onto-geodesics">Step 3: E forces free particles onto geodesics</h2></summary><p>In a local inertial frame, a free particle has</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><msup><mi>x</mi><mi>μ</mi></msup></mrow><mrow><mi>d</mi><msup><mi>τ</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\frac{d^2 x^\mu}{d\tau^2} = 0</annotation></semantics></math></span>
+<p>Transform to arbitrary coordinates (x^\mu(y)). The chain rule gives</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><msup><mi>y</mi><mi>μ</mi></msup></mrow><mrow><mi>d</mi><msup><mi>τ</mi><mn>2</mn></msup></mrow></mfrac><mo>+</mo><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>α</mi><mi>β</mi></mrow><mi>μ</mi></msubsup><mfrac><mrow><mi>d</mi><msup><mi>y</mi><mi>α</mi></msup></mrow><mrow><mi>d</mi><mi>τ</mi></mrow></mfrac><mfrac><mrow><mi>d</mi><msup><mi>y</mi><mi>β</mi></msup></mrow><mrow><mi>d</mi><mi>τ</mi></mrow></mfrac><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\frac{d^2 y^\mu}{d\tau^2}
++
+\Gamma^\mu_{\alpha\beta}
+\frac{dy^\alpha}{d\tau}
+\frac{dy^\beta}{d\tau}
+= 0</annotation></semantics></math></span>
+<p>where the connection is</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>α</mi><mi>β</mi></mrow><mi>μ</mi></msubsup><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mrow><mo fence="true">(</mo><msub><mi mathvariant="normal">∂</mi><mi>α</mi></msub><msub><mi>g</mi><mrow><mi>ν</mi><mi>β</mi></mrow></msub><mo>+</mo><msub><mi mathvariant="normal">∂</mi><mi>β</mi></msub><msub><mi>g</mi><mrow><mi>ν</mi><mi>α</mi></mrow></msub><mo>−</mo><msub><mi mathvariant="normal">∂</mi><mi>ν</mi></msub><msub><mi>g</mi><mrow><mi>α</mi><mi>β</mi></mrow></msub><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\Gamma^\mu_{\alpha\beta}
+=
+\frac{1}{2} g^{\mu\nu}
+\left(
+\partial_\alpha g_{\nu\beta}
++
+\partial_\beta g_{\nu\alpha}
+-
+\partial_\nu g_{\alpha\beta}
+\right)</annotation></semantics></math></span>
+<p>This is the <strong>geodesic equation</strong>. It says:</p>
+<blockquote><p><strong>G2 (candidate):</strong> Free-falling particles follow geodesics of the metric.</p></blockquote>
+<p>The geodesic equation is forced by E: in a local inertial frame it reduces to straight-line motion; in general coordinates it is the unique coordinate-invariant expression of that fact.</p>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="step-4-e-forces-curvature-to-be-the-tidal-field">Step 4: E forces curvature to be the tidal field</h2></summary><p>The equivalence principle says you cannot detect gravity locally. But you can detect it non-locally: two nearby freely falling particles accelerate relative to each other. This is the <strong>tidal effect</strong>.</p>
+<p>Take two nearby geodesics separated by (\xi^\mu). Their relative acceleration is</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msup><mi>D</mi><mn>2</mn></msup><msup><mi>ξ</mi><mi>μ</mi></msup></mrow><mrow><mi>D</mi><msup><mi>τ</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mo>−</mo><msubsup><mi>R</mi><mrow><mi>ν</mi><mi>α</mi><mi>β</mi></mrow><mi>μ</mi></msubsup><msup><mi>u</mi><mi>ν</mi></msup><msup><mi>ξ</mi><mi>α</mi></msup><msup><mi>u</mi><mi>β</mi></msup></mrow><annotation encoding="application/x-tex">\frac{D^2 \xi^\mu}{D\tau^2}
+=
+-
+R^\mu_{\nu\alpha\beta}
+u^\nu \xi^\alpha u^\beta</annotation></semantics></math></span>
+<p>where (R^\mu_{\nu\alpha\beta}) is the Riemann curvature tensor:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msubsup><mi>R</mi><mrow><mi>ν</mi><mi>α</mi><mi>β</mi></mrow><mi>μ</mi></msubsup><mo>=</mo><msub><mi mathvariant="normal">∂</mi><mi>α</mi></msub><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>ν</mi><mi>β</mi></mrow><mi>μ</mi></msubsup><mo>−</mo><msub><mi mathvariant="normal">∂</mi><mi>β</mi></msub><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>ν</mi><mi>α</mi></mrow><mi>μ</mi></msubsup><mo>+</mo><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>α</mi><mi>σ</mi></mrow><mi>μ</mi></msubsup><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>ν</mi><mi>β</mi></mrow><mi>σ</mi></msubsup><mo>−</mo><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>β</mi><mi>σ</mi></mrow><mi>μ</mi></msubsup><msubsup><mi mathvariant="normal">Γ</mi><mrow><mi>ν</mi><mi>α</mi></mrow><mi>σ</mi></msubsup></mrow><annotation encoding="application/x-tex">R^\mu_{\nu\alpha\beta}
+=
+\partial_\alpha \Gamma^\mu_{\nu\beta}
+-
+\partial_\beta \Gamma^\mu_{\nu\alpha}
++
+\Gamma^\mu_{\alpha\sigma}\Gamma^\sigma_{\nu\beta}
+-
+\Gamma^\mu_{\beta\sigma}\Gamma^\sigma_{\nu\alpha}</annotation></semantics></math></span>
+<p>This equation is the mathematical statement of G1. Curvature is not optional: it is what remains of gravity after you have locally transformed it away.</p>
+<p>So:</p>
+<blockquote><p><strong>G1 (refined):</strong> Spacetime curvature is the tidal field of gravity. It is measured by (R^\mu_{\nu\alpha\beta}).</p></blockquote>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="step-5-matter-tells-spacetime-how-to-curve-g3">Step 5: Matter tells spacetime how to curve (G3)</h2></summary><p>We now need a law relating curvature to matter. What do we know?</p>
+<ul><li>In the Newtonian limit, the source is mass density (\rho).</li><li>In relativity, mass and energy are equivalent, so the source must be energy–momentum.</li><li>The source must be a symmetric, conserved tensor: (T^{\mu\nu}).</li><li>The curvature side must be a symmetric, conserved tensor built from (g_{\mu\nu}) and its derivatives.</li></ul>
+<p>The unique tensor that:</p>
+<ol><li>is symmetric,</li><li>is divergence-free: (\nabla_\mu G^{\mu\nu} = 0),</li><li>reduces to the Newtonian source in the weak-field limit,</li></ol>
+<p>is the <strong>Einstein tensor</strong>:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>G</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>=</mo><msup><mi>R</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>R</mi><msup><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup></mrow><annotation encoding="application/x-tex">G^{\mu\nu}
+=
+R^{\mu\nu}
+-
+\frac{1}{2} R g^{\mu\nu}</annotation></semantics></math></span>
+<p>where (R^{\mu\nu}) is the Ricci tensor (contraction of Riemann) and (R) is the Ricci scalar.</p>
+<p>So the field equation is</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>G</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>=</mo><mfrac><mrow><mn>8</mn><mi>π</mi><mi>G</mi></mrow><msup><mi>c</mi><mn>4</mn></msup></mfrac><msup><mi>T</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup></mrow><annotation encoding="application/x-tex">G^{\mu\nu}
+=
+\frac{8\pi G}{c^4} T^{\mu\nu}</annotation></semantics></math></span>
+<p>or equivalently</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>R</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi>R</mi><msup><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>+</mo><mi mathvariant="normal">Λ</mi><msup><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup><mo>=</mo><mfrac><mrow><mn>8</mn><mi>π</mi><mi>G</mi></mrow><msup><mi>c</mi><mn>4</mn></msup></mfrac><msup><mi>T</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msup></mrow><annotation encoding="application/x-tex">R^{\mu\nu}
+-
+\frac{1}{2} R g^{\mu\nu}
++
+\Lambda g^{\mu\nu}
+=
+\frac{8\pi G}{c^4} T^{\mu\nu}</annotation></semantics></math></span>
+<p>The constant (\Lambda) is allowed by the mathematics but not forced. It must be fixed by observation.</p>
+<blockquote><p><strong>G3 (candidate):</strong> Matter and energy curve spacetime according to the Einstein equations.</p></blockquote>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="step-6-the-newtonian-limit-g4">Step 6: The Newtonian limit (G4)</h2></summary><p>We need to check that this reduces to Newtonian gravity when fields are weak and speeds are slow.</p>
+<p>Write</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>g</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msub><mo>=</mo><msub><mi>η</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msub><mo>+</mo><msub><mi>h</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msub><mo separator="true">,</mo><mspace width="2em"/><mi mathvariant="normal">∣</mi><msub><mi>h</mi><mrow><mi>μ</mi><mi>ν</mi></mrow></msub><mi mathvariant="normal">∣</mi><mo>≪</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \qquad |h_{\mu\nu}| \ll 1</annotation></semantics></math></span>
+<p>For a static, slow-moving source:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>h</mi><mn>00</mn></msub><mo>≈</mo><mo>−</mo><mfrac><mrow><mn>2</mn><mi mathvariant="normal">Φ</mi></mrow><msup><mi>c</mi><mn>2</mn></msup></mfrac></mrow><annotation encoding="application/x-tex">h_{00} \approx -\frac{2\Phi}{c^2}</annotation></semantics></math></span>
+<p>The geodesic equation for a slow particle gives</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mi mathvariant="bold">x</mi></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mo>−</mo><mi mathvariant="normal">∇</mi><mi mathvariant="normal">Φ</mi></mrow><annotation encoding="application/x-tex">\frac{d^2 \mathbf{x}}{dt^2} = -\nabla \Phi</annotation></semantics></math></span>
+<p>The Einstein equations reduce to</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi mathvariant="normal">∇</mi><mn>2</mn></msup><mi mathvariant="normal">Φ</mi><mo>=</mo><mn>4</mn><mi>π</mi><mi>G</mi><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\nabla^2 \Phi = 4\pi G \rho</annotation></semantics></math></span>
+<p>which is Poisson&#39;s equation for gravity.</p>
+<p>So:</p>
+<blockquote><p><strong>G4 (candidate):</strong> The curvature law reduces to Newtonian gravity in the weak-field, slow-motion limit.</p></blockquote>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="summary-of-the-chain">Summary of the chain</h2></summary><table><thead><tr><th>Step</th><th>Input</th><th>Forced output</th><th>Mathematical object</th></tr></thead><tbody><tr><td>1</td><td>E</td><td>Gravity is geometry</td><td>Local inertial frames, curvature</td></tr><tr><td>2</td><td>L</td><td>Metric and light cones</td><td>(g_{\mu\nu}), (ds^2 = 0) for light</td></tr><tr><td>3</td><td>E + coordinate invariance</td><td>Free particles follow geodesics</td><td>(\Gamma^\mu_{\alpha\beta}), geodesic equation</td></tr><tr><td>4</td><td>E + non-local tidal effects</td><td>Curvature is tidal field</td><td>(R^\mu_{\nu\alpha\beta})</td></tr><tr><td>5</td><td>Newtonian limit + conservation</td><td>Matter curves spacetime</td><td>(G^{\mu\nu} = \frac{8\pi G}{c^4} T^{\mu\nu})</td></tr><tr><td>6</td><td>Weak field, slow motion</td><td>Newtonian limit</td><td>(\nabla^2 \Phi = 4\pi G \rho)</td></tr></tbody></table>
+<hr></details>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="what-is-forced-and-what-is-chosen">What is forced and what is chosen</h2></summary><p><strong>Forced by E + L:</strong></p>
+<ul><li>Gravity is geometry (G1).</li><li>Free particles follow geodesics (G2).</li><li>Curvature is the tidal field.</li><li>The metric is the fundamental object.</li><li>Light follows null geodesics.</li></ul>
+<p><strong>Chosen or fitted:</strong></p>
+<ul><li>The exact form of the field equation (G3). You could add (\Lambda), or higher-curvature terms, or extra fields. Observations constrain this.</li><li>The value of (G), (c), (\Lambda).</li><li>The matter content (T^{\mu\nu}).</li></ul>
+<p><strong>Degeneracy:</strong></p>
+<ul><li>A Lorentz-ether model with contraction and dilation predicts many of the same observations without curved spacetime.</li><li>Brans–Dicke gravity adds a scalar field and predicts slightly different light bending and perihelion precession.</li><li>(f(R)) gravity modifies the field equation but can match solar-system tests.</li></ul>
+<p>So E + L strongly pushes you toward G1–G4, but does not uniquely fix G3. The final selection is empirical.</p>
+<hr>
+<p>If you want, I can now do the same for the next stage: how the geodesic equation plus the field equation produce specific predictions like light bending, Mercury precession, and gravitational redshift, again without importing GR as an authority.</p></details></details>
+  </main>
+  <div id="contents-overlay" class="contents-overlay" hidden>
+    <aside id="contents-panel" class="contents-panel" aria-labelledby="contents-title">
+      <header class="contents-header">
+        <h2 id="contents-title">Navigation</h2>
+      </header>
+      <nav class="contents-navigation" aria-label="Exported pages">
+        <section class="contents-section"><h3>Canvases</h3><ul class="contents-list"><li class="contents-item" data-contents-kind="canvas"><a class="contents-link" href="../../index.html">Cosmo-Overview</a></li></ul></section>
+        <p class="contents-empty">No additional pages in this canvas.</p>
+      </nav>
+    </aside>
+  </div>
+  <script>
+    (() => {
+      
+      const navigationPageId = "root:page:assets/files/008_General-Relativity.html";
+      const packageRootHref = "../../index.html";
+      const navigationWindowStatePrefix = "canvas-html-exporter-navigation:";
+      const contentsOverlay = document.getElementById("contents-overlay");
+      const navigationButton = document.getElementById("page-navigation-button");
+      let globalNavigationOpen = false;
+      let navigationPageStates = {};
+      let packageViewportStates = {};
+
+      function normalizeNavigationPageStates(value) {
+        if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+        return Object.fromEntries(
+          Object.entries(value).filter((entry) => typeof entry[0] === "string" && typeof entry[1] === "boolean"),
+        );
+      }
+
+      function normalizePackageViewportStates(value) {
+        if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+        return Object.fromEntries(Object.entries(value).filter((entry) => {
+          const state = entry[1];
+          return typeof entry[0] === "string"
+            && state && typeof state === "object" && !Array.isArray(state)
+            && Number.isFinite(state.scale)
+            && Number.isFinite(state.left)
+            && Number.isFinite(state.top);
+        }));
+      }
+
+      function getPackageNavigationScope() {
+        try {
+          const rootUrl = new URL(packageRootHref, window.location.href);
+          return new URL(".", rootUrl).href;
+        } catch {
+          return "";
+        }
+      }
+
+      function readNavigationState() {
+        const params = new URLSearchParams(window.location.search);
+        const globalValue = params.get("navigation");
+        if (globalValue === "open") globalNavigationOpen = true;
+        if (globalValue === "closed") globalNavigationOpen = false;
+        const pageValue = params.get("navigationPages");
+        if (pageValue) {
+          try {
+            navigationPageStates = normalizeNavigationPageStates(JSON.parse(pageValue));
+          } catch {
+            navigationPageStates = {};
+          }
+        }
+        const viewportValue = params.get("canvasViews");
+        if (viewportValue) {
+          try {
+            packageViewportStates = normalizePackageViewportStates(JSON.parse(viewportValue));
+          } catch {
+            packageViewportStates = {};
+          }
+        }
+        if (!window.name.startsWith(navigationWindowStatePrefix)) return;
+        try {
+          const stored = JSON.parse(window.name.slice(navigationWindowStatePrefix.length));
+          if (!stored || stored.scope !== getPackageNavigationScope()) return;
+          if (typeof stored.globalOpen === "boolean") globalNavigationOpen = stored.globalOpen;
+          navigationPageStates = normalizeNavigationPageStates(stored.pageStates);
+          if (Object.prototype.hasOwnProperty.call(stored, "viewportStates")) {
+            packageViewportStates = normalizePackageViewportStates(stored.viewportStates);
+          }
+        } catch {
+          // Ignore unrelated or malformed window state.
+        }
+      }
+
+      function applyNavigationParams(url, restoreCanvasViewId) {
+        url.searchParams.set("navigation", globalNavigationOpen ? "open" : "closed");
+        const pageEntries = Object.entries(navigationPageStates);
+        if (pageEntries.length) {
+          url.searchParams.set("navigationPages", JSON.stringify(Object.fromEntries(pageEntries)));
+        } else {
+          url.searchParams.delete("navigationPages");
+        }
+        const viewportEntries = Object.entries(packageViewportStates);
+        if (viewportEntries.length) {
+          url.searchParams.set("canvasViews", JSON.stringify(Object.fromEntries(viewportEntries)));
+        } else {
+          url.searchParams.delete("canvasViews");
+        }
+        if (restoreCanvasViewId) url.searchParams.set("canvasView", restoreCanvasViewId);
+        else url.searchParams.delete("canvasView");
+      }
+
+      function updateNavigationLinks() {
+        const returnSearchQuery = new URLSearchParams(window.location.search).get("q");
+        document.querySelectorAll('a[href]').forEach((link) => {
+          const href = link.getAttribute("href") || "";
+          if (!href || href.startsWith("#")) return;
+          try {
+            const url = new URL(href, window.location.href);
+            const isLocalTarget = url.protocol === window.location.protocol
+              && (url.protocol === "file:" || url.origin === window.location.origin);
+            if (!isLocalTarget || !url.pathname.toLowerCase().endsWith(".html")) return;
+            applyNavigationParams(url, link.getAttribute("data-restore-canvas-view") || "");
+            if (returnSearchQuery && link.matches(".md-page-back-link, .md-page-canvas-link")) {
+              url.searchParams.set("q", returnSearchQuery);
+            }
+            link.setAttribute("href", url.href);
+          } catch {
+            // Leave malformed or unsupported links unchanged.
+          }
+        });
+      }
+
+      function writeNavigationState() {
+        window.name = navigationWindowStatePrefix + JSON.stringify({
+          scope: getPackageNavigationScope(),
+          globalOpen: globalNavigationOpen,
+          pageStates: navigationPageStates,
+          viewportStates: packageViewportStates,
+        });
+        const url = new URL(window.location.href);
+        applyNavigationParams(url, "");
+        try {
+          window.history.replaceState(null, "", url.href);
+        } catch {
+          // Link propagation below still preserves the chosen state.
+        }
+        updateNavigationLinks();
+      }
+
+      function applyNavigationVisibility(open) {
+        if (!contentsOverlay || !navigationButton) return;
+        contentsOverlay.hidden = !open;
+        document.body.classList.toggle("contents-open", open);
+        navigationButton.classList.toggle("is-active", open);
+        navigationButton.setAttribute("aria-pressed", String(open));
+      }
+
+      function restoreNavigationVisibility() {
+        const hasLocalState = Object.prototype.hasOwnProperty.call(navigationPageStates, navigationPageId);
+        applyNavigationVisibility(hasLocalState ? navigationPageStates[navigationPageId] === true : false);
+      }
+
+      navigationButton.addEventListener("click", () => {
+        const open = contentsOverlay.hidden;
+        navigationPageStates[navigationPageId] = open;
+        applyNavigationVisibility(open);
+        writeNavigationState();
+      });
+
+      readNavigationState();
+      writeNavigationState();
+      restoreNavigationVisibility();
+      window.addEventListener("pageshow", () => {
+        readNavigationState();
+        writeNavigationState();
+        restoreNavigationVisibility();
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const query = (params.get("q") || "").trim();
+      const navigation = params.get("navigation");
+      const navigationPages = params.get("navigationPages");
+      if (navigation === "open" || navigation === "closed") {
+        document.querySelectorAll('a[href]').forEach((link) => {
+          const href = link.getAttribute("href") || "";
+          if (!href || href.startsWith("#")) return;
+          try {
+            const url = new URL(href, window.location.href);
+            const isLocalTarget = url.protocol === window.location.protocol
+              && (url.protocol === "file:" || url.origin === window.location.origin);
+            if (!isLocalTarget) return;
+            if (!url.pathname.toLowerCase().endsWith(".html")) return;
+            url.searchParams.set("navigation", navigation);
+            if (navigationPages) url.searchParams.set("navigationPages", navigationPages);
+            link.setAttribute("href", url.href);
+          } catch {
+            // Leave malformed or unsupported links unchanged.
+          }
+        });
+      }
+      const root = document.querySelector(".md-page");
+      if (!root) return;
+
+      function decodeHashComponent(value) {
+        try {
+          return decodeURIComponent(value);
+        } catch {
+          return value;
+        }
+      }
+
+      const hashTargetId = decodeHashComponent(String(window.location.hash || "").replace(/^#/, ""));
+      if (hashTargetId) {
+        const target = document.getElementById(hashTargetId);
+        if (target) {
+          const highlightTarget = target.closest("details.heading-section") || target;
+          highlightTarget.classList.add("target-highlight");
+          let parent = target.parentElement;
+          while (parent) {
+            if (parent.tagName === "DETAILS") parent.open = true;
+            parent = parent.parentElement;
+          }
+        }
+      }
+
+      if (!query) return;
+
+      const pattern = new RegExp(query.replace(/[.*+?^()|[\]{}$\\]/g, "\\$&"), "ig");
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent) return NodeFilter.FILTER_REJECT;
+          if (["SCRIPT", "STYLE"].includes(parent.tagName)) return NodeFilter.FILTER_REJECT;
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          if (!pattern.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+          pattern.lastIndex = 0;
+          return NodeFilter.FILTER_ACCEPT;
+        },
+      });
+
+      const matches = [];
+      let current = walker.nextNode();
+      while (current) {
+        matches.push(current);
+        current = walker.nextNode();
+      }
+
+      for (const textNode of matches) {
+        const text = textNode.nodeValue || "";
+        pattern.lastIndex = 0;
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        let match = pattern.exec(text);
+
+        while (match) {
+          if (match.index > lastIndex) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+          }
+          const mark = document.createElement("mark");
+          mark.className = "search-highlight";
+          mark.textContent = match[0];
+          fragment.appendChild(mark);
+          lastIndex = match.index + match[0].length;
+          match = pattern.exec(text);
+        }
+
+        if (lastIndex < text.length) {
+          fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        }
+
+        textNode.parentNode.replaceChild(fragment, textNode);
+      }
+    })();
+  </script>
+</body>
+</html>

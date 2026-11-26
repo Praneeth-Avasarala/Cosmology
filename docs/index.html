@@ -105,8 +105,8 @@
     }
     #canvas {
       position: relative;
-      width: 2768px;
-      height: 2640px;
+      width: 4810px;
+      height: 3120px;
       /* Large scroll margins provide a runway that is extended as the user pans. */
       margin: 100000px;
       transform-origin: top left;
@@ -900,19 +900,48 @@
       border: none;
       background: #1d2229;
     }
-    .toolbar {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      flex: 0 0 auto;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: flex-end;
-      padding: 10px 24px 0;
-      background: linear-gradient(to bottom, #15181d, transparent);
-    }
+	.toolbar {
+	  position: fixed;
+	  top: 52px;
+	  right: 24px;
+	  z-index: 50;
+	  display: flex;
+	  flex: 0 0 auto;
+	  align-items: center;
+	  flex-wrap: wrap;
+	  gap: 8px;
+	  justify-content: flex-end;
+	  max-width: calc(100vw - 48px);
+	  box-sizing: border-box;
+	  padding: 10px;
+	  border: 1px solid #313843;
+	  border-radius: 10px;
+	  background: #2b2f36;
+	  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+	}
+
+	.toolbar[hidden] {
+	  display: none;
+	}
+	
+	#toolbar-toggle-button {
+	  position: fixed;
+	  top: 12px;
+	  right: 24px;
+	  z-index: 51;
+	  border: 1px solid #313843;
+	  background: #2b2f36;
+	  color: #e7edf5;
+	  border-radius: 8px;
+	  padding: 6px 12px;
+	  cursor: pointer;
+	  font: inherit;
+	  font-size: 0.875rem;
+	}
+
+	#toolbar-toggle-button:hover {
+	  background: rgba(255,255,255,0.06);
+	}
     .toolbar button,
     .toolbar select,
     .toolbar-menu > summary {
@@ -1623,7 +1652,7 @@
       display: block;
       width: 100%;
       height: auto;
-      aspect-ratio: 2768 / 2640;
+      aspect-ratio: 4810 / 3120;
       border-radius: 10px;
       border: 1px solid #313843;
       overflow: hidden;
@@ -1833,7 +1862,13 @@
 </head>
 <body>
   <div id="canvas-shell">
-  <div class="toolbar">
+   <button
+    id="toolbar-toggle-button"
+    type="button"
+    aria-expanded="false"
+    aria-controls="canvas-toolbar"
+   >Controls</button>
+   <div id="canvas-toolbar" class="toolbar" hidden>
     <button type="button" onclick="zoomBy(1 / 1.15)">Zoom −</button>
     <button type="button" onclick="zoomBy(1.15)">Zoom +</button>
     <button type="button" onclick="resetZoom()">Reset</button>
@@ -1855,7 +1890,7 @@
   <div class="page-header">
     <h1>Cosmo-Overview</h1>
     <div class="page-header-meta">
-      <p>7 nodes · 7 connections<span id="hidden-node-summary" hidden></span></p>
+      <p>9 nodes · 9 connections<span id="hidden-node-summary" hidden></span></p>
       
     </div>
   </div>
@@ -1865,16 +1900,213 @@
     <div id="canvas">
       <svg id="edge-layer"></svg>
       <div
+    id="node-ddabe167c15e8301"
+    class="node text"
+    data-node-id="ddabe167c15e8301"
+    data-canvas-left="3920"
+    data-canvas-top="546"
+    data-canvas-width="520"
+    data-canvas-height="299"
+    
+    style="left:3920px;top:546px;width:520px;height:299px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="ddabe167c15e8301" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 8 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="ddabe167c15e8301" aria-expanded="true" aria-label="Collapse branch · 8 descendants" title="Collapse branch · 8 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="5-infer-from-real-observations-using-theories">5. Infer from real observations using theories</h1></summary><ul><li>Model Parameter Inference</li><li>Joint Inference</li><li>Model Comparision, discrimination</li></ul></details></div></div>
+<div
+    id="node-d461e4d9d790169e"
+    class="node text"
+    data-node-id="d461e4d9d790169e"
+    data-canvas-left="4190"
+    data-canvas-top="1457"
+    data-canvas-width="500"
+    data-canvas-height="286"
+    
+    style="left:4190px;top:1457px;width:500px;height:286px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="d461e4d9d790169e" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 8 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="d461e4d9d790169e" aria-expanded="true" aria-label="Collapse branch · 8 descendants" title="Collapse branch · 8 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="6-design-next-experiment">6. Design next experiment</h1></summary><p>Design experiment to</p>
+<ul><li>observe a theoretical prediction that&#39;s not commonly predicted by all candidate models. break theoretical degeneracy. </li><li>improve accuracy of old observations. increase signal to noise ratio. reduce model parameter uncertainty.</li></ul></details></div></div>
+<div
+    id="node-e84e4fea8c1eeea2"
+    class="node text"
+    data-node-id="e84e4fea8c1eeea2"
+    data-canvas-left="3206"
+    data-canvas-top="120"
+    data-canvas-width="488"
+    data-canvas-height="152"
+    
+    style="left:3206px;top:120px;width:488px;height:152px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="e84e4fea8c1eeea2" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 8 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="e84e4fea8c1eeea2" aria-expanded="true" aria-label="Collapse branch · 8 descendants" title="Collapse branch · 8 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="compare-with-real-observations">Compare with real observations</h1></summary></details></div></div>
+<div
+    id="node-c01f1c084ace0782"
+    class="node text"
+    data-node-id="c01f1c084ace0782"
+    data-canvas-left="2284"
+    data-canvas-top="272"
+    data-canvas-width="582"
+    data-canvas-height="285"
+    
+    style="left:2284px;top:272px;width:582px;height:285px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="c01f1c084ace0782" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 8 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="c01f1c084ace0782" aria-expanded="true" aria-label="Collapse branch · 8 descendants" title="Collapse branch · 8 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="4-generate-mock-observations">4. Generate Mock Observations</h1></summary><details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="add-observation-effects">Add observation effects</h2></summary><ul><li>Lightcone generation</li><li>Redshiftspace distortions</li><li>Spectral Energy Distrubution Fitting</li><li>Telescope resolution, survey masks</li><li>Point spread function</li></ul></details></details></div></div>
+<div
+    id="node-def62426ca206582"
+    class="node text"
+    data-node-id="def62426ca206582"
+    data-canvas-left="2078"
+    data-canvas-top="960"
+    data-canvas-width="412"
+    data-canvas-height="158"
+    
+    style="left:2078px;top:960px;width:412px;height:158px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="def62426ca206582" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 8 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="def62426ca206582" aria-expanded="true" aria-label="Collapse branch · 8 descendants" title="Collapse branch · 8 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="3-simulate">3. Simulate</h1></summary><ul><li>Take hypotheses/theories, generate forward models and simulate the universe</li></ul></details></div></div>
+<div
+    id="node-97ae36b3bc312ba4"
+    class="node text"
+    data-node-id="97ae36b3bc312ba4"
+    data-canvas-left="2078"
+    data-canvas-top="1626"
+    data-canvas-width="825"
+    data-canvas-height="234"
+    
+    style="left:2078px;top:1626px;width:825px;height:234px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="97ae36b3bc312ba4" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 8 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="97ae36b3bc312ba4" aria-expanded="true" aria-label="Collapse branch · 8 descendants" title="Collapse branch · 8 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="2-hypothesize-theorize">2. Hypothesize / Theorize</h1></summary><details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="candidate-explanations-for-observations">Candidate explanations for observations</h2></summary><ul><li>New ideas or updating old ideas</li><li>Could be more than one possible explanations</li></ul></details></details></div></div>
+<div
+    id="node-f4179ec3aafe4256"
+    class="node text"
+    data-node-id="f4179ec3aafe4256"
+    data-canvas-left="1080"
+    data-canvas-top="809"
+    data-canvas-width="720"
+    data-canvas-height="291"
+    
+    style="left:1080px;top:809px;width:720px;height:291px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="f4179ec3aafe4256" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 1 descendant" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="f4179ec3aafe4256" aria-expanded="true" aria-label="Collapse branch · 1 descendant" title="Collapse branch · 1 descendant" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="n-body-computational-algorithms">N-body Computational algorithms</h1></summary><ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Single-valued fluid:  Eulerian (grid-based) vs Smoothed Particle Hydrodynamics (Lagrangian). Eg : Gas/Gas dynamics</summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Eulerian (grid-based) </summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Standard Eulerian hydrodynamics codes - ZEUS, ATHENA, standard grid-based CFD codes</summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">solves navier-stokes or euler equations on a fixed spatial grid</summary>
+          <ul><li>You pick a specific coordinate in space and calculate how fluid properties (density, velocity, pressure) flow through that fixed box over time</li></ul>
+        </details>
+      </li><li>Fluid approximation (treat matter as a grid of densities and a single velocity vector per grid cell)</li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Eulerian perturbation theory - standard linear theory, 1Loop/2Loop PT</summary>
+          <ul><li>analytically solves fluid conservation equations under the assumption of small fluctuations </li></ul>
+        </details>
+      </li><li>Adaptive mesh refinement for varying grid resolution</li></ul>
+        </details>
+      </li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Smoothed particle hydrodynamics (SPH)</summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Swarm of moving, macroscopic particles each carrying its own mass, velocity, cheical composition, moving freely through space</summary>
+          <ul><li>You look at the universe from the perspective of the fluid itself</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">How SPH applies fluid approximation without a grid </summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">kernel function </summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">interpolation</summary>
+          <ul><li>each particle is not a solid billiard ball. it is a smoothed out cloud of mass</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">smoothing length</summary>
+          <ul><li>to find density or pressure at any given point, code sums up all the properties of all neighbouring particles within a specific interaction radius. </li></ul>
+        </details>
+      </li></ul>
+        </details>
+      </li><li>By averaging properties of nearby particles using this kernel, the code successfully solves the continuous Navier-Stokes fluid equations without ever needing a physical grid</li></ul>
+        </details>
+      </li></ul>
+        </details>
+      </li></ul>
+        </details>
+      </li></ul>
+<ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Multi-valued stream  : Self-crossing streams (collisionless dynamics) + Phase separation &amp; mixing. Eg : Rocks, stars, boulders</summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">N-body particle methods</summary>
+          <ul><li>Particle-mesh</li><li>Tree-codes</li><li>Tree-PM (Tree + Particle-Mesh)</li></ul>
+        </details>
+      </li><li>Vlassov-Poisson / Vlassov-maxwell solvers</li><li>Phase-space Tessellation / Folding algorithms</li></ul>
+        </details>
+      </li></ul>
+<ul><li>Hybrid algorithms - model some particles as single-valued fluids and other particles as multi-valued streams</li></ul>
+<details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="questions-to-explore">questions to explore</h2></summary><ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">how to know which algorithm is suited for a system ?</summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Resolution focus</summary>
+          <ul><li>SPH automatically tracks mass. more particles in a region = higher resolution</li><li>Eulerian has fixed spatial resolution unless additional complex adaptive mesh refinement</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Empty space. Voids. Vacuums.</summary>
+          <ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Eulerian is inefficient</summary>
+          <ul><li>wastes computing power calculating empty regions. </li></ul>
+        </details>
+      </li><li>SPH is better</li></ul><ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Sharp boundaries, splashing, fragmentation </summary>
+          <ul><li>SPH is better than eulerian</li></ul>
+        </details>
+      </li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary">Self-crossing streams (collisionless dynamics) + Phase separation &amp; mixing</summary>
+          <ul><li>Single valued codes fail. Multi-valued stream codes are needed.</li></ul>
+        </details>
+      </li></ul>
+        </details>
+      </li></ul></details></details></div></div>
+<div
+    id="node-8719427bbd03c359"
+    class="node text"
+    data-node-id="8719427bbd03c359"
+    data-canvas-left="120"
+    data-canvas-top="799"
+    data-canvas-width="720"
+    data-canvas-height="301"
+    
+    style="left:120px;top:799px;width:720px;height:301px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="8719427bbd03c359" aria-label="Focus node" aria-pressed="false" title="Focus node" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="cosmological-simulations">Cosmological simulations</h1></summary><ul><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary"><a href="https://camels.readthedocs.io/en/latest/codes.html" target="_blank" rel="noopener noreferrer">CAMELS-collection</a> : best suitable for studying small-to-medium scales <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>25</mn><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mi>E</mi><mi>S</mi><msub><mi>C</mi><mn>0</mn></msub><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mtext>Mpc</mtext><mi mathvariant="normal">/</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">(25@@ESC_0@@\text{Mpc}/h</annotation></semantics></math></span> boxes) </summary>
+          <ul><li>Nonlinear cosmological and astrophysical features like galaxy formation, baryonic feedback (AGN and supernovae), gas thermodynamics (Sunyaev-Zel&#39;dovich effect, X-rays), and disentangling baryonic effects from cosmological parameters.</li></ul>
+        </details>
+      </li><li class="list-item-collapsible">
+        <details class="list-fold" open>
+          <summary class="list-summary"><a href="https://quijote-simulations.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">Quijote-collection</a> : best suitable for studying large scale cosmological features <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mi>E</mi><mi>S</mi><msub><mi>C</mi><mn>0</mn></msub><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mtext>Gpc</mtext><mi mathvariant="normal">/</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">(1@@ESC_0@@ \text{Gpc}/h</annotation></semantics></math></span> boxes) </summary>
+          <ul><li>A massive suite of N-body simulations best suited for studying large-scale cosmic web structures (halos, voids, density fields, BAO) and quantifying cosmological parameter information.</li></ul>
+        </details>
+      </li><li>constrained-cosmological-simulations</li><li>AbacusSummit</li><li><a href="https://github.com/eltevo/StePS/" target="_blank" rel="noopener noreferrer">StePS-simulations</a></li><li>Uchuu-simulation-suite</li></ul></details></div></div>
+<div
     id="node-caf0480fe76a3551"
     class="node text"
     data-node-id="caf0480fe76a3551"
-    data-canvas-left="998"
-    data-canvas-top="1720"
-    data-canvas-width="820"
+    data-canvas-left="2960"
+    data-canvas-top="2200"
+    data-canvas-width="760"
     data-canvas-height="800"
     
-    style="left:998px;top:1720px;width:820px;height:800px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
-  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="caf0480fe76a3551" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 6 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="caf0480fe76a3551" aria-expanded="true" aria-label="Collapse branch · 6 descendants" title="Collapse branch · 6 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="1-observemeasure">1. Observe/Measure</h1></summary><ul><li class="list-item-collapsible">
+    style="left:2960px;top:2200px;width:760px;height:800px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
+  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="caf0480fe76a3551" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 8 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="caf0480fe76a3551" aria-expanded="true" aria-label="Collapse branch · 8 descendants" title="Collapse branch · 8 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="1-observemeasure">1. Observe/Measure</h1></summary><ul><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Multi-wavelength Astronomy </summary>
           <ul><li><a href="https://astrobites.org/2022/10/16/guide-to-the-electromagnetic-spectrum-in-astronomy-2/" target="_blank" rel="noopener noreferrer">Guide to the Electromagnetic Spectrum in Astronomy | astrobites</a></li></ul>
@@ -1888,7 +2120,7 @@
 <img src="assets/images/002_Three_Types_Time_Domain_Events.jpg" alt="Three_Types_Time_Domain_Events.jpg"></li></ul>
         </details>
       </li><li>Gravitational wave Astronomy</li><li>Space-based Astronomy</li><li>Ground-based Astronomy</li></ul>
-<details class="heading-section heading-section-h3" open><summary class="heading-summary"><h3 id="observatoriesv">Observatoriesv</h3></summary><p>Humanity operates an extensive fleet of ground-based and space-based observatories. Because Earth&#39;s atmosphere blocks or distorts certain wavelengths, space telescopes are specialized to view the universe across different spectrums of light.</p>
+<details class="heading-section heading-section-h3" open><summary class="heading-summary"><h3 id="observatories">Observatories</h3></summary><p>Humanity operates an extensive fleet of ground-based and space-based observatories. Because Earth&#39;s atmosphere blocks or distorts certain wavelengths, space telescopes are specialized to view the universe across different spectrums of light.</p>
 <ul><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Observatories / Experimental setups</summary>
@@ -1898,7 +2130,7 @@
           <ul><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Detects Light </summary>
-          <ul><li><a href="#missing-JWST">JWST</a> : Infrared</li><li><a href="#missing-Euclid">Euclid</a> : Visible, Near-infrared</li><li><a href="#missing-Hubble">Hubble</a> : Visible, UV, Near-infrared</li><li><a href="#missing-Chandra-X-ray-observatory">Chandra-X-ray-observatory</a> : X-ray</li><li><a href="#missing-TESS">TESS</a> : Visible, Near-infrared</li><li><a href="#missing-Fermi-gamma-ray-space-telescope">Fermi-gamma-ray-space-telescope</a> : Gamma ray</li><li><a href="#missing-XMM-Newton">XMM-Newton</a> : X-ray</li><li><a href="#missing-SPHEREx">SPHEREx</a> : X-ray</li><li><a href="#missing-NuSTAR">NuSTAR</a> : High energy X-ray</li><li><a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> : Infrared</li><li><a href="#missing-Xuntian-space-station-telescope">Xuntian-space-station-telescope</a> : Optical, UV</li></ul>
+          <ul><li><a href="assets/files/003_JWST.html">JWST</a> : Infrared</li><li><a href="assets/files/004_Euclid.html">Euclid</a> : Visible, Near-infrared</li><li><a href="#missing-Hubble">Hubble</a> : Visible, UV, Near-infrared</li><li><a href="#missing-Chandra-X-ray-observatory">Chandra-X-ray-observatory</a> : X-ray</li><li><a href="#missing-TESS">TESS</a> : Visible, Near-infrared</li><li><a href="#missing-Fermi-gamma-ray-space-telescope">Fermi-gamma-ray-space-telescope</a> : Gamma ray</li><li><a href="#missing-XMM-Newton">XMM-Newton</a> : X-ray</li><li><a href="#missing-SPHEREx">SPHEREx</a> : X-ray</li><li><a href="#missing-NuSTAR">NuSTAR</a> : High energy X-ray</li><li><a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> : Infrared</li><li><a href="#missing-Xuntian-space-station-telescope">Xuntian-space-station-telescope</a> : Optical, UV</li></ul>
         </details>
       </li></ul>
         </details>
@@ -1908,10 +2140,10 @@
           <ul><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Detects Light (Electromagnetic radiation)</summary>
-          <ul><li><a href="#missing-DESI">DESI</a> </li><li><a href="#missing-LSST">LSST</a> : UV, Visible, Infrared wavelengths</li><li><a href="#missing-ALMA">ALMA</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="#missing-Atacama-Cosmology-Telescope">Atacama-Cosmology-Telescope</a>	</li><li><a href="#missing-Simons-observatory">Simons-observatory</a> : microwave</li><li><a href="#missing-CMB-S4">CMB-S4</a> : microwave </li><li><a href="#missing-EDGES">EDGES</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="#missing-SKA">SKA</a> : Millimeter/submillimeter Radio wavelengths</li><li class="list-item-collapsible">
+          <ul><li><a href="assets/files/012_DESI.html">DESI</a> </li><li><a href="assets/files/013_LSST.html">LSST</a> : UV, Visible, Infrared wavelengths</li><li><a href="#missing-ALMA">ALMA</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="assets/files/014_Atacama-Cosmology-Telescope.html">Atacama-Cosmology-Telescope</a>	</li><li><a href="#missing-Simons-observatory">Simons-observatory</a> : microwave</li><li><a href="#missing-CMB-S4">CMB-S4</a> : microwave </li><li><a href="assets/files/015_EDGES.html">EDGES</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="assets/files/016_SKA.html">SKA</a> : Millimeter/submillimeter Radio wavelengths</li><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Particle-physics-experiments</summary>
-          <ul><li><a href="#missing-CMS-Compact-Muon-Solenoid">CMS-Compact-Muon-Solenoid</a> </li><li><a href="#missing-IceCube-Neutrino">IceCube-Neutrino</a> : Cherenkov radiation</li></ul>
+          <ul><li><a href="assets/files/017_CMS-Compact-Muon-Solenoid.html">CMS-Compact-Muon-Solenoid</a> </li><li><a href="assets/files/018_IceCube-Neutrino.html">IceCube-Neutrino</a> : Cherenkov radiation</li></ul>
         </details>
       </li></ul>
         </details>
@@ -1931,12 +2163,12 @@
           <summary class="list-summary">Here are some of the most powerful, complementary observatory pairings in astronomy today.</summary>
           <ul><li class="list-item-collapsible">
         <details class="list-fold" open>
-          <summary class="list-summary"><a href="#missing-Euclid">Euclid</a> (space) , <a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> (space) &amp; <a href="#missing-LSST">LSST</a> (ground)</summary>
+          <summary class="list-summary"><a href="assets/files/004_Euclid.html">Euclid</a> (space) , <a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> (space) &amp; <a href="assets/files/013_LSST.html">LSST</a> (ground)</summary>
           <ul><li><strong>Synergy</strong> : By combining the pristine, sharp space imagery from Euclid with the intensely deep, multi-color ground survey of LSST and narrower fields but with unparalleled depth, sensitivity, and near-infrared precision of Roman,  cosmologists can map dark matter far more effectively than using either telescope alone. When determining &quot;weak gravitational lensing&quot; (how dark matter bends light), physicists must calculate both the shape and exact distance of a galaxy. A faint galaxy might appear blurry on the ground due to Earth&#39;s atmosphere. Cosmologists use Euclid&#39;s perfectly crisp space image to get the shape, and cross-reference it with Rubin’s multi-color color data to get the distance. Combining their strengths yields calculations that are several times more accurate than analyzing any telescope alone.</li></ul>
         </details>
       </li><li class="list-item-collapsible">
         <details class="list-fold" open>
-          <summary class="list-summary"><a href="#missing-JWST">JWST</a> (space) &amp; <a href="#missing-ALMA">ALMA</a> (ground): The Ultimate Dust-Piercers</summary>
+          <summary class="list-summary"><a href="assets/files/003_JWST.html">JWST</a> (space) &amp; <a href="#missing-ALMA">ALMA</a> (ground): The Ultimate Dust-Piercers</summary>
           <ul><li>JWST cuts through thick cosmic dust clouds to see the warm, infrared glow of newborn stars and the atmospheric chemistry of young exoplanets. The Atacama Large Millimeter/submillimeter Array consists of 66 radio dishes that map the intensely <em>cold</em> gas and molecular dust disks orbiting those same newborn stars.</li><li><strong>Synergy</strong> : JWST reveals the forming star itself, while ALMA maps the cold, raw planetary building blocks swirling around it. Together, they give a more complete timeline of solar system creation.</li></ul>
         </details>
       </li><li class="list-item-collapsible">
@@ -1953,7 +2185,7 @@
           <ul><li>Hubble captures highly detailed optical and ultraviolet structural shapes of galaxies, glowing nebulae, and nearby planets. Chandra ignores normal starlight and focuses purely on high-energy X-rays, tracking cosmic environments that are millions of degrees hot.</li><li><strong>Synergy</strong> : When looking at a galaxy cluster, Hubble shows the elegant shapes of billions of tranquil stars. Chandra overlays this with a map of the invisible, super-heated gas clouds and active supermassive black holes tearing those galaxies apart.</li></ul>
         </details>
       </li></ul>
-<ul><li><a href="#missing-Simons-observatory">Simons-observatory</a>/ <a href="#missing-CMB-S4">CMB-S4</a> + <a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> / <a href="#missing-Euclid">Euclid</a></li><li>Wide-field surveyors + ELTs for follow up : search-and-characterize strategy</li></ul>
+<ul><li><a href="#missing-Simons-observatory">Simons-observatory</a>/ <a href="#missing-CMB-S4">CMB-S4</a> + <a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> / <a href="assets/files/004_Euclid.html">Euclid</a></li><li>Wide-field surveyors + ELTs for follow up : search-and-characterize strategy</li></ul>
 <hr></details>
 <details class="heading-section heading-section-h3" open><summary class="heading-summary"><h3 id="where-to-find-the-data-from-these-observatories">Where to find the data from these observatories</h3></summary><ul><li class="list-item-collapsible">
         <details class="list-fold" open>
@@ -1961,73 +2193,6 @@
           <ul><li>Astropy, Astroquery</li></ul>
         </details>
       </li></ul></details></details></div></div>
-<div
-    id="node-97ae36b3bc312ba4"
-    class="node text"
-    data-node-id="97ae36b3bc312ba4"
-    data-canvas-left="120"
-    data-canvas-top="1400"
-    data-canvas-width="825"
-    data-canvas-height="234"
-    
-    style="left:120px;top:1400px;width:825px;height:234px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
-  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="97ae36b3bc312ba4" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 6 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="97ae36b3bc312ba4" aria-expanded="true" aria-label="Collapse branch · 6 descendants" title="Collapse branch · 6 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="2-hypothesize-theorize">2. Hypothesize / Theorize</h1></summary><details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="candidate-explanations-for-observations">Candidate explanations for observations</h2></summary><ul><li>New ideas or updating old ideas</li><li>Could be more than one possible explanations</li></ul></details></details></div></div>
-<div
-    id="node-def62426ca206582"
-    class="node text"
-    data-node-id="def62426ca206582"
-    data-canvas-left="327"
-    data-canvas-top="938"
-    data-canvas-width="412"
-    data-canvas-height="158"
-    
-    style="left:327px;top:938px;width:412px;height:158px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
-  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="def62426ca206582" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 6 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="def62426ca206582" aria-expanded="true" aria-label="Collapse branch · 6 descendants" title="Collapse branch · 6 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="3-simulate">3. Simulate</h1></summary><ul><li>Take hypotheses/theories, generate forward models and simulate the universe</li></ul></details></div></div>
-<div
-    id="node-c01f1c084ace0782"
-    class="node text"
-    data-node-id="c01f1c084ace0782"
-    data-canvas-left="241"
-    data-canvas-top="360"
-    data-canvas-width="582"
-    data-canvas-height="285"
-    
-    style="left:241px;top:360px;width:582px;height:285px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
-  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="c01f1c084ace0782" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 6 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="c01f1c084ace0782" aria-expanded="true" aria-label="Collapse branch · 6 descendants" title="Collapse branch · 6 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="4-generate-mock-observations">4. Generate Mock Observations</h1></summary><details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="add-observation-effects">Add observation effects</h2></summary><ul><li>Lightcone generation</li><li>Redshiftspace distortions</li><li>Spectral Energy Distrubution Fitting</li><li>Telescope resolution, survey masks</li><li>Point spread function</li></ul></details></details></div></div>
-<div
-    id="node-e84e4fea8c1eeea2"
-    class="node text"
-    data-node-id="e84e4fea8c1eeea2"
-    data-canvas-left="701"
-    data-canvas-top="120"
-    data-canvas-width="488"
-    data-canvas-height="152"
-    
-    style="left:701px;top:120px;width:488px;height:152px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
-  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="e84e4fea8c1eeea2" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 6 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="e84e4fea8c1eeea2" aria-expanded="true" aria-label="Collapse branch · 6 descendants" title="Collapse branch · 6 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="compare-with-real-observations">Compare with real observations</h1></summary></details></div></div>
-<div
-    id="node-ddabe167c15e8301"
-    class="node text"
-    data-node-id="ddabe167c15e8301"
-    data-canvas-left="1878"
-    data-canvas-top="346"
-    data-canvas-width="520"
-    data-canvas-height="299"
-    
-    style="left:1878px;top:346px;width:520px;height:299px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
-  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="ddabe167c15e8301" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 6 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="ddabe167c15e8301" aria-expanded="true" aria-label="Collapse branch · 6 descendants" title="Collapse branch · 6 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="5-infer-from-real-observations-using-theories">5. Infer from real observations using theories</h1></summary><ul><li>Model Parameter Inference</li><li>Joint Inference</li><li>Model Comparision, discrimination</li></ul></details></div></div>
-<div
-    id="node-d461e4d9d790169e"
-    class="node text"
-    data-node-id="d461e4d9d790169e"
-    data-canvas-left="2148"
-    data-canvas-top="1257"
-    data-canvas-width="500"
-    data-canvas-height="286"
-    
-    style="left:2148px;top:1257px;width:500px;height:286px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
-  ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="d461e4d9d790169e" aria-label="Focus branch" aria-pressed="false" title="Focus branch · 6 descendants" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button><button class="branch-control" type="button" data-branch-node-id="d461e4d9d790169e" aria-expanded="true" aria-label="Collapse branch · 6 descendants" title="Collapse branch · 6 descendants" hidden>−</button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="6-design-next-experiment">6. Design next experiment</h1></summary><p>Design experiment to</p>
-<ul><li>observe a theoretical prediction that&#39;s not commonly predicted by all candidate models. break theoretical degeneracy. </li><li>improve accuracy of old observations. increase signal to noise ratio. reduce model parameter uncertainty.</li></ul></details></div></div>
       
     </div>
   </div>
@@ -2037,15 +2202,17 @@
         <strong>Minimap</strong>
       </div>
     </div>
-    <svg id="minimap-svg" viewBox="0 0 2768 2640" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <rect class="minimap-background" x="0" y="0" width="2768" height="2640"></rect>
-      <rect class="minimap-node" data-node-id="caf0480fe76a3551" data-node-shape="" data-node-type="text" x="998" y="1720" width="820" height="800" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="97ae36b3bc312ba4" data-node-shape="" data-node-type="text" x="120" y="1400" width="825" height="234" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="def62426ca206582" data-node-shape="" data-node-type="text" x="327" y="938" width="412" height="158" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="c01f1c084ace0782" data-node-shape="" data-node-type="text" x="241" y="360" width="582" height="285" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="e84e4fea8c1eeea2" data-node-shape="" data-node-type="text" x="701" y="120" width="488" height="152" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="ddabe167c15e8301" data-node-shape="" data-node-type="text" x="1878" y="346" width="520" height="299" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="d461e4d9d790169e" data-node-shape="" data-node-type="text" x="2148" y="1257" width="500" height="286" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+    <svg id="minimap-svg" viewBox="0 0 4810 3120" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <rect class="minimap-background" x="0" y="0" width="4810" height="3120"></rect>
+      <rect class="minimap-node" data-node-id="ddabe167c15e8301" data-node-shape="" data-node-type="text" x="3920" y="546" width="520" height="299" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="d461e4d9d790169e" data-node-shape="" data-node-type="text" x="4190" y="1457" width="500" height="286" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="e84e4fea8c1eeea2" data-node-shape="" data-node-type="text" x="3206" y="120" width="488" height="152" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="c01f1c084ace0782" data-node-shape="" data-node-type="text" x="2284" y="272" width="582" height="285" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="def62426ca206582" data-node-shape="" data-node-type="text" x="2078" y="960" width="412" height="158" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="97ae36b3bc312ba4" data-node-shape="" data-node-type="text" x="2078" y="1626" width="825" height="234" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="f4179ec3aafe4256" data-node-shape="" data-node-type="text" x="1080" y="809" width="720" height="291" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="8719427bbd03c359" data-node-shape="" data-node-type="text" x="120" y="799" width="720" height="301" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="caf0480fe76a3551" data-node-shape="" data-node-type="text" x="2960" y="2200" width="760" height="800" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
       <rect id="minimap-viewport" class="minimap-viewport" x="0" y="0" width="0" height="0"></rect>
     </svg>
   </aside>
@@ -2084,7 +2251,8 @@
       const navigationInitiallyOpen = false;
       const navigationPageId = "root";
       const initialRestoreCanvasViewId = new URLSearchParams(window.location.search).get("canvasView");
-      const toolbar = document.querySelector(".toolbar");
+      const toolbar = document.getElementById("canvas-toolbar");
+      const toolbarToggleButton = document.getElementById("toolbar-toggle-button");
       const canvasShell = document.getElementById("canvas-shell");
       const edgeLayer = document.getElementById("edge-layer");
       const canvas = document.getElementById("canvas");
@@ -2123,9 +2291,9 @@
       const markerBackground = "#1d2229";
       const inlineBlobCache = new Map();
       const obsidianColors = {"0":"rgb(171, 171, 171)","1":"rgb(251, 70, 76)","2":"rgb(233, 151, 63)","3":"rgb(224, 222, 113)","4":"rgb(68, 207, 110)","5":"rgb(83, 223, 221)","6":"rgb(168, 130, 255)"};
-      const edges = [{"id":"091f52ec6532e492","fromId":"97ae36b3bc312ba4","toId":"def62426ca206582","fromSide":"top","toSide":"bottom","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"181ff298cbbbc366","fromId":"def62426ca206582","toId":"c01f1c084ace0782","fromSide":"top","toSide":"bottom","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"5c744039c064f390","fromId":"c01f1c084ace0782","toId":"e84e4fea8c1eeea2","fromSide":"top","toSide":"left","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"33efc9b05d8bf24f","fromId":"e84e4fea8c1eeea2","toId":"ddabe167c15e8301","fromSide":"right","toSide":"top","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"0dc10cd75b833053","fromId":"caf0480fe76a3551","toId":"97ae36b3bc312ba4","fromSide":"left","toSide":"bottom","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"008cfd83930a0a9e","fromId":"ddabe167c15e8301","toId":"d461e4d9d790169e","fromSide":"right","toSide":"top","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"1e228f9e569f608d","fromId":"d461e4d9d790169e","toId":"caf0480fe76a3551","fromSide":"left","toSide":"right","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""}];
+      const edges = [{"id":"091f52ec6532e492","fromId":"97ae36b3bc312ba4","toId":"def62426ca206582","fromSide":"top","toSide":"bottom","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"181ff298cbbbc366","fromId":"def62426ca206582","toId":"c01f1c084ace0782","fromSide":"top","toSide":"bottom","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"5c744039c064f390","fromId":"c01f1c084ace0782","toId":"e84e4fea8c1eeea2","fromSide":"top","toSide":"left","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"33efc9b05d8bf24f","fromId":"e84e4fea8c1eeea2","toId":"ddabe167c15e8301","fromSide":"right","toSide":"top","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"0dc10cd75b833053","fromId":"caf0480fe76a3551","toId":"97ae36b3bc312ba4","fromSide":"left","toSide":"bottom","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"008cfd83930a0a9e","fromId":"ddabe167c15e8301","toId":"d461e4d9d790169e","fromSide":"right","toSide":"top","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"1e228f9e569f608d","fromId":"d461e4d9d790169e","toId":"caf0480fe76a3551","fromSide":"left","toSide":"right","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"9b00e9872603578b","fromId":"def62426ca206582","toId":"f4179ec3aafe4256","fromSide":"left","toSide":"right","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""},{"id":"9d0ed843d96f0ace","fromId":"f4179ec3aafe4256","toId":"8719427bbd03c359","fromSide":"left","toSide":"right","fromEnd":"none","toEnd":"arrow","lineStyle":"solid","width":2,"label":"","color":""}];
       const searchEntries = [];
-      const foldingGraph = {"childrenByNode":{"97ae36b3bc312ba4":["def62426ca206582"],"c01f1c084ace0782":["e84e4fea8c1eeea2"],"caf0480fe76a3551":["97ae36b3bc312ba4"],"d461e4d9d790169e":["caf0480fe76a3551"],"ddabe167c15e8301":["d461e4d9d790169e"],"def62426ca206582":["c01f1c084ace0782"],"e84e4fea8c1eeea2":["ddabe167c15e8301"]},"connectedGroupNodeIds":[],"groupContentsByNode":{},"groupMembersByNode":{},"levelByNode":{},"maxLevel":-1,"parentsByNode":{"97ae36b3bc312ba4":["caf0480fe76a3551"],"c01f1c084ace0782":["def62426ca206582"],"caf0480fe76a3551":["d461e4d9d790169e"],"d461e4d9d790169e":["ddabe167c15e8301"],"ddabe167c15e8301":["e84e4fea8c1eeea2"],"def62426ca206582":["97ae36b3bc312ba4"],"e84e4fea8c1eeea2":["c01f1c084ace0782"]},"rootNodeIds":[]};
+      const foldingGraph = {"childrenByNode":{"8719427bbd03c359":[],"97ae36b3bc312ba4":["def62426ca206582"],"c01f1c084ace0782":["e84e4fea8c1eeea2"],"caf0480fe76a3551":["97ae36b3bc312ba4"],"d461e4d9d790169e":["caf0480fe76a3551"],"ddabe167c15e8301":["d461e4d9d790169e"],"def62426ca206582":["c01f1c084ace0782","f4179ec3aafe4256"],"e84e4fea8c1eeea2":["ddabe167c15e8301"],"f4179ec3aafe4256":["8719427bbd03c359"]},"connectedGroupNodeIds":[],"groupContentsByNode":{},"groupMembersByNode":{},"levelByNode":{},"maxLevel":-1,"parentsByNode":{"8719427bbd03c359":["f4179ec3aafe4256"],"97ae36b3bc312ba4":["caf0480fe76a3551"],"c01f1c084ace0782":["def62426ca206582"],"caf0480fe76a3551":["d461e4d9d790169e"],"d461e4d9d790169e":["ddabe167c15e8301"],"ddabe167c15e8301":["e84e4fea8c1eeea2"],"def62426ca206582":["97ae36b3bc312ba4"],"e84e4fea8c1eeea2":["c01f1c084ace0782"],"f4179ec3aafe4256":["def62426ca206582"]},"rootNodeIds":[]};
       const groupNodeIds = new Set([]);
       const connectedGroupNodeIds = new Set(foldingGraph.connectedGroupNodeIds || []);
       const descendantsCache = new Map();
@@ -2147,8 +2315,8 @@
       let focusedBranchNodeId = null;
       let visibleLevelLimit = null;
       let currentScale = 1;
-      let canvasBoundsWidth = 2768;
-      let canvasBoundsHeight = 2640;
+      let canvasBoundsWidth = 4810;
+      let canvasBoundsHeight = 3120;
       let zoomAreaDrag = null;
       let canvasPanDrag = null;
       let cardResizeDrag = null;
@@ -3202,12 +3370,19 @@
       }
 
       function placeMinimapUnderToolbar() {
-        if (!minimapPanel) return;
-        const toolbarRect = toolbar ? toolbar.getBoundingClientRect() : null;
-        const panelWidth = minimapPanel.offsetWidth || 240;
-        const top = (toolbarRect ? toolbarRect.bottom : 48) + 8;
-        const left = window.innerWidth - panelWidth - 24;
-        applyMinimapPosition(left, top);
+		  if (!minimapPanel) return;
+
+		  const panelWidth = minimapPanel.offsetWidth || 240;
+
+		  const anchor = toolbar && !toolbar.hidden
+			? toolbar
+			: document.getElementById("toolbar-toggle-button");
+
+		  const anchorRect = anchor ? anchor.getBoundingClientRect() : null;
+		  const top = (anchorRect ? anchorRect.bottom : 48) + 8;
+		  const left = window.innerWidth - panelWidth - 24;
+
+		  applyMinimapPosition(left, top);
       }
 
       function parsePageHash(hash) {
@@ -4651,6 +4826,20 @@
           foldingMenu.removeAttribute("open");
         });
       }
+
+	  if (toolbar && toolbarToggleButton) {
+		  toolbarToggleButton.addEventListener("click", () => {
+			const isOpening = toolbar.hidden;
+
+			toolbar.hidden = !isOpening;
+			toolbarToggleButton.setAttribute("aria-expanded", String(isOpening));
+			toolbarToggleButton.textContent = isOpening ? "Hide controls" : "Controls";
+
+			if (minimapPanel && minimapPanel.dataset.positionMode !== "custom") {
+			  placeMinimapUnderToolbar();
+			}
+		  });
+	  }
       document.querySelectorAll(".branch-control[data-branch-node-id]").forEach((control) => {
         control.addEventListener("click", (event) => {
           event.preventDefault();
