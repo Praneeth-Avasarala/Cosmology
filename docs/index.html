@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="generator" content="canvas-html-exporter v1.6.0">
   <meta name="canvas-html-exporter-build" content="1.6.0-shiki">
   <base href="./">
@@ -39,9 +39,19 @@
       padding: 20px 24px 8px;
       flex: 0 0 auto;
     }
+    .page-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-width: 0;
+    }
     .page-header h1 {
-      margin: 0 0 8px;
+      flex: 1 1 auto;
+      min-width: 0;
+      margin: 0;
       font-size: 1.4rem;
+      overflow-wrap: anywhere;
     }
     .page-header p {
       margin: 0;
@@ -51,7 +61,9 @@
     .page-header-meta {
       display: flex;
       align-items: baseline;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 8px;
     }
     .viewport {
       overflow: auto;
@@ -902,7 +914,7 @@
     }
 	.toolbar {
 	  position: fixed;
-	  top: 52px;
+	  top: 64px;
 	  right: 24px;
 	  z-index: 50;
 	  display: flex;
@@ -924,20 +936,23 @@
 	  display: none;
 	}
 	
-	#toolbar-toggle-button {
-	  position: fixed;
-	  top: 12px;
-	  right: 24px;
-	  z-index: 51;
-	  border: 1px solid #313843;
-	  background: #2b2f36;
-	  color: #e7edf5;
-	  border-radius: 8px;
-	  padding: 6px 12px;
-	  cursor: pointer;
-	  font: inherit;
-	  font-size: 0.875rem;
-	}
+    #toolbar-toggle-button {
+      position: static;
+      z-index: 51;
+      flex: 0 0 auto;
+      min-width: 112px;
+      min-height: 36px;
+      border: 1px solid #313843;
+      background: #2b2f36;
+      color: #e7edf5;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.875rem;
+      text-align: center;
+      white-space: nowrap;
+    }
 
 	#toolbar-toggle-button:hover {
 	  background: rgba(255,255,255,0.06);
@@ -1042,6 +1057,20 @@
     .contents-header h2 {
       margin: 0;
       font-size: 1.15rem;
+    }
+    .contents-close-button {
+      flex: 0 0 auto;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid #313843;
+      border-radius: 8px;
+      background: #2b2f36;
+      color: #e7edf5;
+      font: inherit;
+      cursor: pointer;
+    }
+    .contents-close-button:hover {
+      background: rgba(255,255,255,0.06);
     }
     .contents-navigation {
       flex: 1 1 auto;
@@ -1482,7 +1511,7 @@
     .search-overlay {
       position: fixed;
       inset: 0;
-      z-index: 30;
+      z-index: 100;
       display: flex;
       align-items: flex-start;
       justify-content: center;
@@ -1555,6 +1584,8 @@
     }
     .search-results {
       list-style: none;
+      flex: 1 1 auto;
+      min-height: 0;
       margin: 0;
       padding: 0;
       overflow: auto;
@@ -1683,10 +1714,108 @@
       pointer-events: none;
     }
     @media (max-width: 720px) {
+      #canvas-shell {
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      .page-header {
+        padding: 12px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));
+      }
+      .page-header-top {
+        align-items: center;
+        gap: 10px;
+      }
+      .page-header h1 {
+        font-size: clamp(1.1rem, 5vw, 1.35rem);
+        line-height: 1.25;
+      }
+      #toolbar-toggle-button {
+        min-width: 104px;
+        min-height: 40px;
+      }
+      .page-header-meta {
+        gap: 6px 12px;
+        font-size: 0.9rem;
+      }
+      .viewport {
+        padding: 12px max(12px, env(safe-area-inset-right, 0px)) 20px max(12px, env(safe-area-inset-left, 0px));
+      }
+      body.contents-open {
+        padding-left: 0;
+        overflow: hidden;
+        transition: none;
+      }
+      .contents-overlay {
+        inset: 0;
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.42);
+        z-index: 90;
+      }
+      .contents-panel {
+        width: min(88vw, 360px);
+        height: 100%;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        border-right: 1px solid #313843;
+        box-shadow: 12px 0 36px rgba(0, 0, 0, 0.28);
+      }
+      .contents-header {
+        padding: max(14px, env(safe-area-inset-top, 0px)) 16px 14px;
+      }
+      .contents-close-button {
+        min-height: 40px;
+      }
+      .contents-navigation {
+        padding: 10px 16px 24px;
+        overscroll-behavior: contain;
+      }
+      body.search-open {
+        overflow: hidden;
+      }
+      .search-overlay {
+        inset: auto 0 auto;
+        top: var(--visual-viewport-offset-top, 0px);
+        height: var(--visual-viewport-height, 100dvh);
+        align-items: flex-start;
+        padding: max(12px, env(safe-area-inset-top, 0px)) 12px max(12px, env(safe-area-inset-bottom, 0px));
+        z-index: 100;
+        overscroll-behavior: contain;
+      }
+      body.contents-open .search-overlay {
+        left: 0;
+      }
+      .search-panel {
+        width: 100%;
+        max-height: min(calc(var(--visual-viewport-height, 100dvh) - 24px), 820px);
+        padding: 14px;
+        border-radius: 14px;
+      }
+      .search-input {
+        min-height: 44px;
+        font-size: 16px;
+      }
+      .search-close-button {
+        min-height: 40px;
+      }
+      .search-results {
+        overscroll-behavior: contain;
+      }
+      .toolbar-menu-content {
+        max-width: calc(100vw - 32px);
+        max-height: min(60dvh, 480px);
+        overflow: auto;
+        overscroll-behavior: contain;
+      }
       .minimap {
         right: 12px;
         bottom: 12px;
         width: min(180px, calc(100vw - 24px));
+      }
+    }
+    @media (max-width: 720px) and (orientation: landscape) {
+      .contents-panel {
+        width: min(70vw, 360px);
       }
     }
     .edge-label {
@@ -1862,12 +1991,6 @@
 </head>
 <body>
   <div id="canvas-shell">
-   <button
-    id="toolbar-toggle-button"
-    type="button"
-    aria-expanded="false"
-    aria-controls="canvas-toolbar"
-   >Controls</button>
    <div id="canvas-toolbar" class="toolbar" hidden>
     <button type="button" onclick="zoomBy(1 / 1.15)">Zoom −</button>
     <button type="button" onclick="zoomBy(1.15)">Zoom +</button>
@@ -1888,7 +2011,15 @@
     <button id="contents-toolbar-button" type="button" onclick="toggleContents()" aria-pressed="false">Navigation</button>
   </div>
   <div class="page-header">
-    <h1>Cosmo-Overview</h1>
+    <div class="page-header-top">
+      <h1>Cosmo-Overview</h1>
+      <button
+        id="toolbar-toggle-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="canvas-toolbar"
+      >Controls</button>
+    </div>
     <div class="page-header-meta">
       <p>9 nodes · 9 connections<span id="hidden-node-summary" hidden></span></p>
       
@@ -2087,12 +2218,12 @@
     style="left:120px;top:809px;width:740px;height:475px;background:#000000;border-color:#4a5565;--node-background-color:#000000;--node-border-color:#4a5565;"
   ><div class="node-drag-strip" aria-hidden="true"></div><div class="node-controls"><button class="branch-focus-control" type="button" data-focus-node-id="8719427bbd03c359" aria-label="Focus node" aria-pressed="false" title="Focus node" hidden><svg class="branch-focus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path></svg></button></div><button class="node-resize-handle node-resize-nw" type="button" data-resize-corner="nw" aria-label="Resize card from top left corner" title="Resize card"></button><button class="node-resize-handle node-resize-ne" type="button" data-resize-corner="ne" aria-label="Resize card from top right corner" title="Resize card"></button><button class="node-resize-handle node-resize-sw" type="button" data-resize-corner="sw" aria-label="Resize card from bottom left corner" title="Resize card"></button><button class="node-resize-handle node-resize-se" type="button" data-resize-corner="se" aria-label="Resize card from bottom right corner" title="Resize card"></button><div class="node-content"><details class="heading-section heading-section-h1" open><summary class="heading-summary"><h1 id="cosmological-simulations">Cosmological simulations</h1></summary><ul><li class="list-item-collapsible">
         <details class="list-fold" open>
-          <summary class="list-summary"><a href="https://camels.readthedocs.io/en/latest/codes.html" target="_blank" rel="noopener noreferrer">CAMELS-collection</a> : best suitable for studying small-to-medium scales <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>25</mn><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mi>E</mi><mi>S</mi><msub><mi>C</mi><mn>0</mn></msub><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mtext>Mpc</mtext><mi mathvariant="normal">/</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">(25@@ESC_0@@\text{Mpc}/h</annotation></semantics></math></span> boxes) </summary>
+          <summary class="list-summary"><a href="https://camels.readthedocs.io/en/latest/codes.html" target="_blank" rel="noopener noreferrer">CAMELS-collection</a> : best suitable for studying small-to-medium scales <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>25</mn><mtext> </mtext><mtext>Mpc</mtext><mi mathvariant="normal">/</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">(25\,\text{Mpc}/h</annotation></semantics></math></span> boxes) </summary>
           <ul><li>Nonlinear cosmological and astrophysical features like galaxy formation, baryonic feedback (AGN and supernovae), gas thermodynamics (Sunyaev-Zel&#39;dovich effect, X-rays), and disentangling baryonic effects from cosmological parameters.</li></ul>
         </details>
       </li><li class="list-item-collapsible">
         <details class="list-fold" open>
-          <summary class="list-summary"><a href="https://quijote-simulations.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">Quijote-collection</a> : best suitable for studying large scale cosmological features <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mi>E</mi><mi>S</mi><msub><mi>C</mi><mn>0</mn></msub><mi mathvariant="normal">@</mi><mi mathvariant="normal">@</mi><mtext>Gpc</mtext><mi mathvariant="normal">/</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">(1@@ESC_0@@ \text{Gpc}/h</annotation></semantics></math></span> boxes) </summary>
+          <summary class="list-summary"><a href="https://quijote-simulations.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">Quijote-collection</a> : best suitable for studying large scale cosmological features <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mtext> </mtext><mtext>Gpc</mtext><mi mathvariant="normal">/</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">(1\, \text{Gpc}/h</annotation></semantics></math></span> boxes) </summary>
           <ul><li>A massive suite of N-body simulations best suited for studying large-scale cosmic web structures (halos, voids, density fields, BAO) and quantifying cosmological parameter information.</li></ul>
         </details>
       </li><li>constrained-cosmological-simulations</li><li>AbacusSummit</li><li><a href="https://github.com/eltevo/StePS/" target="_blank" rel="noopener noreferrer">StePS-simulations</a></li><li>Uchuu-simulation-suite</li></ul></details></div></div>
@@ -2224,6 +2355,7 @@
     <aside id="contents-panel" class="contents-panel" aria-labelledby="contents-title">
       <header class="contents-header">
         <h2 id="contents-title">Navigation</h2>
+        <button id="contents-close-button" class="contents-close-button" type="button" aria-label="Close navigation">Close</button>
       </header>
       <nav class="contents-navigation" aria-label="Exported pages">
         <section class="contents-section"><h3>Canvases</h3><ul class="contents-list"><li class="contents-item" data-contents-kind="canvas"><span class="contents-link is-current" aria-current="page" data-contents-current-canvas="true">Cosmo-Overview</span></li></ul></section>
@@ -2273,6 +2405,7 @@
       const searchCloseButton = document.getElementById("search-close-button");
       const contentsOverlay = document.getElementById("contents-overlay");
       const contentsPanel = document.getElementById("contents-panel");
+      const contentsCloseButton = document.getElementById("contents-close-button");
       const contentsToolbarButtons = Array.from(document.querySelectorAll("#contents-toolbar-button, .single-page-navigation-button"));
       const embeddedPageTemplates = Array.from(document.querySelectorAll("#embedded-pages-store template"));
       const edgeColor = "rgb(171, 171, 171)";
@@ -2318,6 +2451,45 @@
       let searchHighlightTimer = null;
       let activeSearchIndex = -1;
       let restoreNestedSearchOnCanvasReturn = false;
+
+      function isMobileOverlayLayout() {
+        return Boolean(window.matchMedia && window.matchMedia("(max-width: 720px)").matches);
+      }
+
+      function closeToolbarForOverlay() {
+        if (!toolbar || !toolbarToggleButton || toolbar.hidden) return;
+        toolbar.hidden = true;
+        toolbarToggleButton.setAttribute("aria-expanded", "false");
+        toolbarToggleButton.textContent = "Controls";
+        if (minimapPanel && minimapPanel.dataset.positionMode !== "custom") {
+          placeMinimapUnderToolbar();
+        }
+      }
+
+      function prepareSearchOverlay() {
+        if (!isMobileOverlayLayout()) return;
+        closeToolbarForOverlay();
+        closeContents();
+      }
+
+      function prepareContentsOverlay() {
+        if (!isMobileOverlayLayout()) return;
+        closeToolbarForOverlay();
+        closeSearch();
+      }
+
+      function updateVisualViewportMetrics() {
+        const visualViewport = window.visualViewport;
+        if (!visualViewport) return;
+        document.documentElement.style.setProperty("--visual-viewport-height", visualViewport.height + "px");
+        document.documentElement.style.setProperty("--visual-viewport-offset-top", visualViewport.offsetTop + "px");
+      }
+
+      updateVisualViewportMetrics();
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", updateVisualViewportMetrics);
+        window.visualViewport.addEventListener("scroll", updateVisualViewportMetrics);
+      }
 
       function setCssProps(element, props) {
         if (!element) return;
@@ -2910,7 +3082,9 @@
       function openSearch() {
         if (!searchOverlay) return;
         if (searchOverlay.hidden) searchReturnFocus = document.activeElement;
+        if (typeof prepareSearchOverlay === "function") prepareSearchOverlay();
         searchOverlay.hidden = false;
+        if (document.body) document.body.classList.add("search-open");
         if (searchToolbarButton) {
           searchToolbarButton.classList.add("is-active");
           searchToolbarButton.setAttribute("aria-pressed", "true");
@@ -2924,15 +3098,19 @@
       function closeSearch() {
         if (!searchOverlay || searchOverlay.hidden) return;
         searchOverlay.hidden = true;
+        if (document.body) document.body.classList.remove("search-open");
         if (searchToolbarButton) {
           searchToolbarButton.classList.remove("is-active");
           searchToolbarButton.setAttribute("aria-pressed", "false");
         }
+        const fallbackTarget = searchToolbarButton && searchToolbarButton.getClientRects().length
+          ? searchToolbarButton
+          : (typeof toolbarToggleButton !== "undefined" ? toolbarToggleButton : searchToolbarButton);
         const target = searchReturnFocus instanceof HTMLElement
           && searchReturnFocus !== document.body && searchReturnFocus !== document.documentElement
           && !searchReturnFocus.disabled
           && searchReturnFocus.isConnected && searchReturnFocus.getClientRects().length
-          ? searchReturnFocus : searchToolbarButton;
+          ? searchReturnFocus : fallbackTarget;
         searchReturnFocus = null;
         if (target) target.focus({ preventScroll: true });
       }
@@ -2988,6 +3166,7 @@
       window.closeSearch = closeSearch;
 
       let globalNavigationOpen = navigationInitiallyOpen;
+      let contentsReturnFocus = null;
       let navigationPageStates = {};
       let packageViewportStates = {};
       const navigationWindowStatePrefix = "canvas-html-exporter-navigation:";
@@ -3169,14 +3348,26 @@
 
       function openContents() {
         if (!contentsOverlay) return;
+        if (contentsOverlay.hidden) contentsReturnFocus = document.activeElement;
+        if (typeof prepareContentsOverlay === "function") prepareContentsOverlay();
         storeCurrentNavigationState(true);
         applyContentsVisibility(true);
+        if (contentsCloseButton) contentsCloseButton.focus({ preventScroll: true });
       }
 
       function closeContents() {
-        if (!contentsOverlay) return;
+        if (!contentsOverlay || contentsOverlay.hidden) return;
         storeCurrentNavigationState(false);
         applyContentsVisibility(false);
+        const fallbackTarget = typeof toolbarToggleButton !== "undefined" ? toolbarToggleButton : null;
+        const target = contentsReturnFocus instanceof HTMLElement
+          && contentsReturnFocus.isConnected
+          && contentsReturnFocus.getClientRects().length
+          && !contentsReturnFocus.disabled
+          ? contentsReturnFocus
+          : fallbackTarget;
+        contentsReturnFocus = null;
+        if (target) target.focus({ preventScroll: true });
       }
 
       function toggleContents() {
@@ -4829,6 +5020,14 @@
 			}
 		  });
 	  }
+      if (contentsCloseButton) {
+        contentsCloseButton.addEventListener("click", closeContents);
+      }
+      if (contentsOverlay) {
+        contentsOverlay.addEventListener("click", (event) => {
+          if (event.target === contentsOverlay) closeContents();
+        });
+      }
       document.querySelectorAll(".branch-control[data-branch-node-id]").forEach((control) => {
         control.addEventListener("click", (event) => {
           event.preventDefault();
@@ -4979,6 +5178,10 @@
         }
         if (event.key === "Escape" && searchOverlay && !searchOverlay.hidden) {
           closeSearch();
+          return;
+        }
+        if (event.key === "Escape" && contentsOverlay && !contentsOverlay.hidden) {
+          closeContents();
         }
       });
       window.addEventListener("online", syncLinkOfflineState);
