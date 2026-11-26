@@ -28,43 +28,56 @@
       height: 100vh;
       height: 100dvh;
       min-height: 0;
+      background-color: #000000;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.22) 1px, transparent 1.2px);
+      background-size: 20px 20px;
     }
     #canvas-shell[hidden] {
       display: none;
     }
-    .page-header {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 20px 24px 8px;
+    .page-header-layout {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 560px) minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+      width: min(1040px, calc(100% - 40px));
+      margin: 18px auto 0;
       flex: 0 0 auto;
     }
-    .page-header-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-width: 0;
-      min-height: 40px;
-    }
-    .page-header h1 {
-      flex: 1 1 auto;
+    .page-header {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
       min-width: 0;
       margin: 0;
-      font-size: 1.4rem;
-      line-height: 1.2;
+      padding: 18px 24px 16px;
+      text-align: center;
+      background: #2b2f36;
+      border: 1px solid #313843;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+    }
+    .page-header h1 {
+      width: min(100%, 720px);
+      margin: 0 auto;
+      padding: 0;
+      font-size: 1.5rem;
+      font-weight: 650;
+      line-height: 1.25;
       overflow-wrap: anywhere;
     }
     .page-header p {
       margin: 0;
       color: #aeb8c5;
-      font-size: 0.95rem;
+      font-size: 0.875rem;
     }
     .page-header-meta {
       display: flex;
       align-items: baseline;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 8px 20px;
+      gap: 6px 16px;
       margin-top: 8px;
     }
     .viewport {
@@ -73,9 +86,7 @@
       flex: 1 1 auto;
       min-height: 0;
       cursor: grab;
-      background-color: #000000;
-      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.22) 1px, transparent 1.2px);
-      background-size: 20px 20px;
+      background: transparent;
     }
     .viewport.is-panning {
       cursor: grabbing;
@@ -915,9 +926,9 @@
       background: #1d2229;
     }
 	.toolbar {
-	  position: fixed;
-	  top: 64px;
-	  right: 24px;
+	  position: absolute;
+	  top: calc(100% + 10px);
+	  right: 0;
 	  z-index: 50;
 	  display: flex;
 	  flex: 0 0 auto;
@@ -939,23 +950,26 @@
 	}
 	
     #toolbar-toggle-button {
-      position: static;
+      grid-column: 3;
+      grid-row: 1;
+      justify-self: end;
+      align-self: center;
       z-index: 51;
       flex: 0 0 auto;
-      width: 112px;
-      min-width: 112px;
-      min-height: 40px;
+      min-width: 92px;
+      min-height: 36px;
       border: 1px solid #313843;
       background: #2b2f36;
       color: #e7edf5;
-      border-radius: 8px;
-      padding: 8px 14px;
+      border-radius: 9px;
+      padding: 7px 12px;
       cursor: pointer;
       font: inherit;
-      font-size: 0.875rem;
+      font-size: 0.84rem;
       line-height: 1.2;
       text-align: center;
       white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
     }
 
 	#toolbar-toggle-button:hover {
@@ -1722,24 +1736,37 @@
         padding-top: env(safe-area-inset-top, 0px);
         padding-bottom: env(safe-area-inset-bottom, 0px);
       }
-      .page-header {
-        padding: 12px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));
+      .page-header-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+        width: calc(100% - 24px);
+        margin-top: 12px;
       }
-      .page-header-top {
-        align-items: center;
-        gap: 10px;
+      .page-header {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 16px 14px 12px;
+        border-radius: 12px;
       }
       .page-header h1 {
-        font-size: clamp(1.1rem, 5vw, 1.35rem);
+        width: 100%;
+        padding: 0;
+        font-size: clamp(1.05rem, 5vw, 1.3rem);
         line-height: 1.25;
       }
       #toolbar-toggle-button {
-        min-width: 104px;
-        min-height: 40px;
+        grid-column: 1;
+        grid-row: 2;
+        justify-self: end;
+        min-width: 80px;
+        min-height: 34px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
       }
       .page-header-meta {
-        gap: 6px 12px;
-        font-size: 0.9rem;
+        gap: 5px 10px;
+        margin-top: 7px;
+        font-size: 0.8rem;
       }
       .viewport {
         padding: 12px max(12px, env(safe-area-inset-right, 0px)) 20px max(12px, env(safe-area-inset-left, 0px));
@@ -1995,7 +2022,21 @@
 </head>
 <body>
   <div id="canvas-shell">
-   <div id="canvas-toolbar" class="toolbar" hidden>
+   <div class="page-header-layout">
+    <header class="page-header">
+      <h1>Cosmo-Overview</h1>
+      <div class="page-header-meta">
+        <p>9 nodes · 9 connections<span id="hidden-node-summary" hidden></span></p>
+        
+      </div>
+    </header>
+    <button
+      id="toolbar-toggle-button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="canvas-toolbar"
+    >Controls</button>
+    <div id="canvas-toolbar" class="toolbar" hidden>
     <button type="button" onclick="zoomBy(1 / 1.15)">Zoom −</button>
     <button type="button" onclick="zoomBy(1.15)">Zoom +</button>
     <button type="button" onclick="resetZoom()">Reset</button>
@@ -2013,20 +2054,6 @@
     <button id="minimap-toolbar-button" type="button" onclick="toggleMinimap()">Minimap</button>
     <button id="search-toolbar-button" type="button" onclick="openSearch()">Search...</button>
     <button id="contents-toolbar-button" type="button" onclick="toggleContents()" aria-pressed="false">Navigation</button>
-  </div>
-  <div class="page-header">
-    <div class="page-header-top">
-      <h1>Cosmo-Overview</h1>
-      <button
-        id="toolbar-toggle-button"
-        type="button"
-        aria-expanded="false"
-        aria-controls="canvas-toolbar"
-      >Controls</button>
-    </div>
-    <div class="page-header-meta">
-      <p>9 nodes · 9 connections<span id="hidden-node-summary" hidden></span></p>
-      
     </div>
   </div>
   <div class="viewport">
@@ -2260,7 +2287,7 @@
           <ul><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Detects Light </summary>
-          <ul><li><a href="assets/files/003_JWST.html">JWST</a> : Infrared</li><li><a href="assets/files/004_Euclid.html">Euclid</a> : Visible, Near-infrared</li><li><a href="#missing-Hubble">Hubble</a> : Visible, UV, Near-infrared</li><li><a href="#missing-Chandra-X-ray-observatory">Chandra-X-ray-observatory</a> : X-ray</li><li><a href="#missing-TESS">TESS</a> : Visible, Near-infrared</li><li><a href="#missing-Fermi-gamma-ray-space-telescope">Fermi-gamma-ray-space-telescope</a> : Gamma ray</li><li><a href="#missing-XMM-Newton">XMM-Newton</a> : X-ray</li><li><a href="#missing-SPHEREx">SPHEREx</a> : X-ray</li><li><a href="#missing-NuSTAR">NuSTAR</a> : High energy X-ray</li><li><a href="assets/files/012_Nancy-grace-roman-space-telescope.html">Nancy-grace-roman-space-telescope</a> : Infrared</li><li><a href="#missing-Xuntian-space-station-telescope">Xuntian-space-station-telescope</a> : Optical, UV</li></ul>
+          <ul><li><a href="assets/files/003_JWST.html">JWST</a> : Infrared</li><li><a href="assets/files/004_Euclid.html">Euclid</a> : Visible, Near-infrared</li><li><a href="#missing-Hubble">Hubble</a> : Visible, UV, Near-infrared</li><li><a href="#missing-Chandra-X-ray-observatory">Chandra-X-ray-observatory</a> : X-ray</li><li><a href="#missing-TESS">TESS</a> : Visible, Near-infrared</li><li><a href="#missing-Fermi-gamma-ray-space-telescope">Fermi-gamma-ray-space-telescope</a> : Gamma ray</li><li><a href="#missing-XMM-Newton">XMM-Newton</a> : X-ray</li><li><a href="#missing-SPHEREx">SPHEREx</a> : X-ray</li><li><a href="#missing-NuSTAR">NuSTAR</a> : High energy X-ray</li><li><a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> : Infrared</li><li><a href="#missing-Xuntian-space-station-telescope">Xuntian-space-station-telescope</a> : Optical, UV</li></ul>
         </details>
       </li></ul>
         </details>
@@ -2270,10 +2297,10 @@
           <ul><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Detects Light (Electromagnetic radiation)</summary>
-          <ul><li><a href="assets/files/013_DESI.html">DESI</a> </li><li><a href="assets/files/014_LSST.html">LSST</a> : UV, Visible, Infrared wavelengths</li><li><a href="#missing-ALMA">ALMA</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="assets/files/015_Atacama-Cosmology-Telescope.html">Atacama-Cosmology-Telescope</a>	</li><li><a href="#missing-Simons-observatory">Simons-observatory</a> : microwave</li><li><a href="#missing-CMB-S4">CMB-S4</a> : microwave </li><li><a href="assets/files/016_EDGES.html">EDGES</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="assets/files/017_SKA.html">SKA</a> : Millimeter/submillimeter Radio wavelengths</li><li class="list-item-collapsible">
+          <ul><li><a href="assets/files/012_DESI.html">DESI</a> </li><li><a href="assets/files/013_LSST.html">LSST</a> : UV, Visible, Infrared wavelengths</li><li><a href="#missing-ALMA">ALMA</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="assets/files/014_Atacama-Cosmology-Telescope.html">Atacama-Cosmology-Telescope</a>	</li><li><a href="#missing-Simons-observatory">Simons-observatory</a> : microwave</li><li><a href="#missing-CMB-S4">CMB-S4</a> : microwave </li><li><a href="assets/files/015_EDGES.html">EDGES</a> : Millimeter/submillimeter Radio wavelengths</li><li><a href="assets/files/016_SKA.html">SKA</a> : Millimeter/submillimeter Radio wavelengths</li><li class="list-item-collapsible">
         <details class="list-fold" open>
           <summary class="list-summary">Particle-physics-experiments</summary>
-          <ul><li><a href="assets/files/018_CMS-Compact-Muon-Solenoid.html">CMS-Compact-Muon-Solenoid</a> </li><li><a href="assets/files/019_IceCube-Neutrino.html">IceCube-Neutrino</a> : Cherenkov radiation</li></ul>
+          <ul><li><a href="assets/files/017_CMS-Compact-Muon-Solenoid.html">CMS-Compact-Muon-Solenoid</a> </li><li><a href="assets/files/018_IceCube-Neutrino.html">IceCube-Neutrino</a> : Cherenkov radiation</li></ul>
         </details>
       </li></ul>
         </details>
@@ -2291,7 +2318,7 @@
 <p>Here are some of the most powerful, complementary observatory pairings in astronomy today.</p>
 <ul><li class="list-item-collapsible">
         <details class="list-fold" open>
-          <summary class="list-summary"><a href="assets/files/004_Euclid.html">Euclid</a> (space) , <a href="assets/files/012_Nancy-grace-roman-space-telescope.html">Nancy-grace-roman-space-telescope</a> (space) &amp; <a href="assets/files/014_LSST.html">LSST</a> (ground)</summary>
+          <summary class="list-summary"><a href="assets/files/004_Euclid.html">Euclid</a> (space) , <a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> (space) &amp; <a href="assets/files/013_LSST.html">LSST</a> (ground)</summary>
           <ul><li><strong>Synergy</strong> : By combining the pristine, sharp space imagery from Euclid with the intensely deep, multi-color ground survey of LSST and narrower fields but with unparalleled depth, sensitivity, and near-infrared precision of Roman,  cosmologists can map dark matter far more effectively than using either telescope alone. When determining &quot;weak gravitational lensing&quot; (how dark matter bends light), physicists must calculate both the shape and exact distance of a galaxy. A faint galaxy might appear blurry on the ground due to Earth&#39;s atmosphere. Cosmologists use Euclid&#39;s perfectly crisp space image to get the shape, and cross-reference it with Rubin’s multi-color color data to get the distance. Combining their strengths yields calculations that are several times more accurate than analyzing any telescope alone.</li></ul>
         </details>
       </li><li class="list-item-collapsible">
@@ -2309,7 +2336,7 @@
           <summary class="list-summary"><a href="#missing-Hubble">Hubble</a> (space) &amp; <a href="#missing-Chandra-X-ray-observatory">Chandra-X-ray-observatory</a> (space) : Classic Cosmic Tag-Team</summary>
           <ul><li>Hubble captures highly detailed optical and ultraviolet structural shapes of galaxies, glowing nebulae, and nearby planets. Chandra ignores normal starlight and focuses purely on high-energy X-rays, tracking cosmic environments that are millions of degrees hot.</li><li><strong>Synergy</strong> : When looking at a galaxy cluster, Hubble shows the elegant shapes of billions of tranquil stars. Chandra overlays this with a map of the invisible, super-heated gas clouds and active supermassive black holes tearing those galaxies apart.</li></ul>
         </details>
-      </li><li><a href="#missing-Simons-observatory">Simons-observatory</a>/ <a href="#missing-CMB-S4">CMB-S4</a> + <a href="assets/files/012_Nancy-grace-roman-space-telescope.html">Nancy-grace-roman-space-telescope</a> / <a href="assets/files/004_Euclid.html">Euclid</a></li><li>Wide-field surveyors + ELTs for follow up : search-and-characterize strategy</li></ul>
+      </li><li><a href="#missing-Simons-observatory">Simons-observatory</a>/ <a href="#missing-CMB-S4">CMB-S4</a> + <a href="#missing-Nancy-grace-roman-space-telescope">Nancy-grace-roman-space-telescope</a> / <a href="assets/files/004_Euclid.html">Euclid</a></li><li>Wide-field surveyors + ELTs for follow up : search-and-characterize strategy</li></ul>
 <hr></details></details>
 <details class="heading-section heading-section-h2" open><summary class="heading-summary"><h2 id="where-to-find-the-data-from-these-observatories">Where to find the data from these observatories</h2></summary><ul><li class="list-item-collapsible">
         <details class="list-fold" open>
