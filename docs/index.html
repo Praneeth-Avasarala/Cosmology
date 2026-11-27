@@ -110,23 +110,26 @@
     }
     .canvas-assist-tools {
       position: fixed;
-      z-index: 40;
+      z-index: 55;
       top: 118px;
       left: 18px;
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      gap: 9px;
-      width: min(250px, calc(100vw - 36px));
-      max-height: calc(100dvh - 136px);
-      overflow-y: auto;
-      overscroll-behavior: contain;
-      padding: 0 2px 8px 0;
+      gap: 8px;
+      width: 46px;
+      max-height: none;
+      overflow: visible;
+      padding: 0;
     }
     .canvas-help-panel {
-      position: static;
-      z-index: auto;
-      width: 100%;
+      position: fixed;
+      z-index: 54;
+      top: 118px;
+      left: 74px;
+      width: min(300px, calc(100vw - 92px));
+      max-height: min(70dvh, 560px);
+      overflow: auto;
       color: #e7edf5;
       background: color-mix(in srgb, #2b2f36 94%, transparent);
       border: 1px solid #313843;
@@ -187,29 +190,31 @@
     .canvas-help-group strong { color: #e7edf5; font-weight: 650; }
     .canvas-help-mobile { display: none; }
     .canvas-help-toggle {
-      position: static;
-      z-index: auto;
+      position: relative;
+      z-index: 56;
       display: inline-flex;
       align-self: stretch;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      width: 100%;
-      min-height: 42px;
+      gap: 0;
+      width: 46px;
+      min-width: 46px;
+      height: 46px;
+      min-height: 46px;
       box-sizing: border-box;
-      padding: 7px 12px;
+      padding: 0;
       border: 1px solid #313843;
       border-radius: 10px;
       color: #e7edf5;
       background: #2b2f36;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
       font: inherit;
-      font-size: 0.82rem;
+      font-size: 0;
       font-weight: 600;
       cursor: pointer;
     }
     .canvas-help-toggle[hidden] { display: none; }
-    .canvas-help-toggle span { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; border-radius: 50%; color: #e7edf5; background: rgba(255,255,255,0.06); }
+    .canvas-help-toggle span { position: absolute; inset: 0; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; margin: auto; border-radius: 50%; color: #e7edf5; background: rgba(255,255,255,0.06); font-size: 17px; }
     .viewport {
       overflow: auto;
       padding: 16px 24px 28px;
@@ -1094,49 +1099,51 @@
       background: #1d2229;
     }
 	.toolbar {
-	  position: static;
-	  z-index: auto;
+	  position: fixed;
+	  z-index: 54;
+	  top: 172px;
+	  left: 74px;
 	  display: flex;
 	  flex: 0 0 auto;
-	  align-items: center;
-	  flex-wrap: wrap;
-	  gap: 8px;
 	  flex-direction: column;
 	  align-items: stretch;
 	  justify-content: flex-start;
-	  width: 100%;
+	  gap: 8px;
+	  width: min(250px, calc(100vw - 92px));
 	  max-width: none;
+	  max-height: min(68dvh, 560px);
+	  overflow: auto;
 	  box-sizing: border-box;
 	  padding: 10px;
 	  border: 1px solid #313843;
 	  border-radius: 10px;
 	  background: #2b2f36;
-	  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+	  box-shadow: 0 8px 24px rgba(0,0,0,0.32);
 	}
-
 	.toolbar[hidden] {
 	  display: none;
 	}
 	
     #toolbar-toggle-button {
-      position: static;
+      position: relative;
       grid-column: auto;
       grid-row: auto;
       justify-self: stretch;
       align-self: stretch;
-      z-index: 51;
+      z-index: 56;
       flex: 0 0 auto;
-      width: 100%;
-      min-width: 0;
-      min-height: 42px;
+      width: 46px;
+      min-width: 46px;
+      height: 46px;
+      min-height: 46px;
       border: 1px solid #313843;
       background: #2b2f36;
       color: #e7edf5;
       border-radius: 9px;
-      padding: 7px 12px;
+      padding: 0;
       cursor: pointer;
       font: inherit;
-      font-size: 0.84rem;
+      font-size: 0;
       line-height: 1.2;
       text-align: center;
       white-space: nowrap;
@@ -1146,6 +1153,11 @@
 	#toolbar-toggle-button:hover {
 	  background: rgba(255,255,255,0.06);
 	}
+    #toolbar-toggle-button::before {
+      content: "⚙";
+      font-size: 21px;
+      line-height: 1;
+    }
     .toolbar button,
     .toolbar select,
     .toolbar-menu > summary {
@@ -1835,13 +1847,13 @@
       border-radius: 3px;
     }
     .minimap {
-      position: relative;
-      left: auto;
+      position: fixed;
+      left: 18px;
       right: auto;
       top: auto;
-      bottom: auto;
-      z-index: auto;
-      width: 100%;
+      bottom: 18px;
+      z-index: 45;
+      width: min(240px, calc(100vw - 36px));
       max-height: 220px;
       overflow: auto;
       padding: 10px;
@@ -2865,10 +2877,9 @@
       function setCanvasHelpOpen(open, remember = false) {
         if (!canvasHelpPanel || !canvasHelpToggle) return;
         canvasHelpPanel.hidden = !open;
-        const isMobile = window.matchMedia("(max-width: 720px)").matches;
-        // Keep the mobile dock button visible so the panel can be toggled without
-        // relying only on the close control. Desktop retains its original behaviour.
-        canvasHelpToggle.hidden = open && !isMobile;
+        // Keep the Help dock button visible on every device so the panel can
+        // always be toggled closed or switched to Settings.
+        canvasHelpToggle.hidden = false;
         canvasHelpToggle.setAttribute("aria-expanded", String(open));
         if (remember) {
           canvasHelpDismissed = !open;
@@ -2879,7 +2890,7 @@
         try { canvasHelpDismissed = window.localStorage.getItem("canvas-html-exporter-help-dismissed") === "1"; } catch (_) { /* Storage may be unavailable for local files. */ }
         const isDesktopHelp = window.matchMedia("(min-width: 721px)").matches;
         setCanvasHelpOpen(isDesktopHelp && !canvasHelpDismissed);
-        canvasHelpToggle.hidden = isDesktopHelp && !canvasHelpDismissed;
+        canvasHelpToggle.hidden = false;
         canvasHelpToggle.addEventListener("click", () => {
           const isOpening = canvasHelpPanel.hidden;
           if (isOpening && toolbar && toolbarToggleButton && !toolbar.hidden) {
@@ -3307,17 +3318,23 @@
         };
       }
 
-      function getMinimumCanvasScale() {
-        if (!viewport) return 0.2;
+      function getFitCanvasScale() {
+        if (!viewport) return 1;
         const fitBounds = getFitNodeBounds();
         const fitPadding = 48;
         const availableWidth = Math.max(100, viewport.clientWidth);
         const availableHeight = Math.max(100, viewport.clientHeight);
         const scaleX = availableWidth / (fitBounds.width + fitPadding * 2);
         const scaleY = availableHeight / (fitBounds.height + fitPadding * 2);
-        // Match Reset's fit-to-canvas scale, but allow very large canvases to
-        // zoom out below the old fixed 20% floor.
-        return Math.max(0.001, Math.min(scaleX, scaleY, 1));
+        return Math.min(scaleX, scaleY, 1);
+      }
+
+      function getMinimumCanvasScale() {
+        const fitScale = getFitCanvasScale();
+        // Desktop users can zoom out to half the fit-to-canvas scale for a
+        // wider overview. Mobile retains the existing fit-scale lower bound.
+        const isDesktop = window.matchMedia("(min-width: 721px)").matches;
+        return Math.max(0.001, isDesktop ? fitScale * 0.5 : fitScale);
       }
 
       function focusNode(nodeId) {
@@ -5319,7 +5336,7 @@
         cancelZoomAreaDrag();
         cancelCanvasPan();
         const fitBounds = getFitNodeBounds();
-        currentScale = getMinimumCanvasScale();
+        currentScale = getFitCanvasScale();
         setCssProps(canvas, { transform: "scale(" + currentScale + ")" });
         drawEdges();
         scrollViewportToCanvasPoint(fitBounds.left + fitBounds.width / 2, fitBounds.top + fitBounds.height / 2, "auto");
