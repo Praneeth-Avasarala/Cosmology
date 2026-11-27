@@ -160,6 +160,26 @@
       cursor: pointer;
     }
     .canvas-help-close:hover { color: #e7edf5; background: rgba(255,255,255,0.06); }
+    .canvas-help-footer {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      justify-content: flex-end;
+      padding: 8px 12px;
+      border-top: 1px solid #313843;
+      background: #2b2f36;
+      border-radius: 0 0 12px 12px;
+    }
+    .canvas-help-close {
+      width: auto;
+      min-width: 76px;
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid #313843;
+      background: rgba(255,255,255,0.06);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
     .canvas-help-content { padding: 4px 14px 12px; }
     .canvas-help-group { padding-top: 9px; }
     .canvas-help-group h3 { margin: 0 0 3px; color: #e7edf5; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.035em; text-transform: uppercase; }
@@ -2019,7 +2039,8 @@
       }
       .canvas-help-header { padding: 8px 10px 7px; }
       .canvas-help-header h2 { font-size: 0.82rem; }
-      .canvas-help-close { width: 32px; height: 32px; }
+      .canvas-help-close { min-width: 76px; min-height: 40px; width: auto; height: auto; }
+      .canvas-help-footer { padding: 7px 10px; }
       .canvas-help-content { padding: 3px 10px 9px; }
       .canvas-help-group { padding-top: 7px; }
       .canvas-help-group h3 { font-size: 0.7rem; }
@@ -2027,7 +2048,7 @@
       .canvas-help-mobile { display: block; }
       .canvas-help-desktop { display: none; }
       .canvas-help-header { padding: 12px 14px 10px; }
-      .canvas-help-close { width: 36px; height: 36px; }
+      .canvas-help-close { min-width: 76px; min-height: 40px; width: auto; height: auto; }
       .canvas-help-content { padding: 4px 14px 14px; }
       .canvas-help-group { padding-top: 11px; }
       .canvas-help-group p { font-size: 0.88rem; }
@@ -2333,7 +2354,6 @@
   <aside id="canvas-help-panel" class="canvas-help-panel" aria-label="Canvas help" hidden>
     <div class="canvas-help-header">
       <h2>Explore this canvas</h2>
-      <button id="canvas-help-close" class="canvas-help-close" type="button" aria-label="Close help">×</button>
     </div>
     <div class="canvas-help-content">
       <section class="canvas-help-group">
@@ -2349,6 +2369,9 @@
         <h3>Interact</h3>
         <p>Click or tap links and card contents. Open the <strong>⚙ settings button</strong> for zoom, reset, folding, and other canvas tools.</p>
       </section>
+    </div>
+    <div class="canvas-help-footer">
+      <button id="canvas-help-close" class="canvas-help-close" type="button" aria-label="Close help">Close help</button>
     </div>
   </aside>
   <button id="canvas-help-toggle" class="canvas-help-toggle" type="button" aria-label="Help" aria-expanded="false" aria-controls="canvas-help-panel">Help <span aria-hidden="true">?</span></button>
@@ -2842,7 +2865,10 @@
       function setCanvasHelpOpen(open, remember = false) {
         if (!canvasHelpPanel || !canvasHelpToggle) return;
         canvasHelpPanel.hidden = !open;
-        canvasHelpToggle.hidden = open;
+        const isMobile = window.matchMedia("(max-width: 720px)").matches;
+        // Keep the mobile dock button visible so the panel can be toggled without
+        // relying only on the close control. Desktop retains its original behaviour.
+        canvasHelpToggle.hidden = open && !isMobile;
         canvasHelpToggle.setAttribute("aria-expanded", String(open));
         if (remember) {
           canvasHelpDismissed = !open;
@@ -2854,7 +2880,16 @@
         const isDesktopHelp = window.matchMedia("(min-width: 721px)").matches;
         setCanvasHelpOpen(isDesktopHelp && !canvasHelpDismissed);
         canvasHelpToggle.hidden = isDesktopHelp && !canvasHelpDismissed;
-        canvasHelpToggle.addEventListener("click", () => setCanvasHelpOpen(canvasHelpPanel.hidden, true));
+        canvasHelpToggle.addEventListener("click", () => {
+          const isOpening = canvasHelpPanel.hidden;
+          if (isOpening && toolbar && toolbarToggleButton && !toolbar.hidden) {
+            toolbar.hidden = true;
+            toolbarToggleButton.setAttribute("aria-expanded", "false");
+            toolbarToggleButton.textContent = "Controls";
+            if (minimapPanel && minimapPanel.dataset.positionMode !== "custom") placeMinimapUnderToolbar();
+          }
+          setCanvasHelpOpen(isOpening, true);
+        });
         if (canvasHelpClose) canvasHelpClose.addEventListener("click", () => setCanvasHelpOpen(false, true));
         window.addEventListener("resize", () => {
           if (window.matchMedia("(min-width: 721px)").matches && !canvasHelpDismissed) setCanvasHelpOpen(true);
@@ -5422,6 +5457,7 @@
 	  if (toolbar && toolbarToggleButton) {
 		  toolbarToggleButton.addEventListener("click", () => {
 			const isOpening = toolbar.hidden;
+            if (isOpening && canvasHelpPanel && !canvasHelpPanel.hidden) setCanvasHelpOpen(false, true);
 
 			toolbar.hidden = !isOpening;
 			toolbarToggleButton.setAttribute("aria-expanded", String(isOpening));
