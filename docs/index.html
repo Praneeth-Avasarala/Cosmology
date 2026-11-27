@@ -1934,20 +1934,35 @@
       .canvas-assist-tools {
         top: max(128px, calc(env(safe-area-inset-top, 0px) + 112px));
         left: max(10px, env(safe-area-inset-left, 0px));
-        width: min(210px, 62vw);
+        width: min(164px, 46vw);
         max-height: calc(var(--visual-viewport-height, 100dvh) - 24px);
-        gap: 7px;
+        gap: 6px;
       }
       .canvas-help-panel {
-        max-height: min(38dvh, 300px);
+        max-height: min(32dvh, 240px);
         overflow: auto;
-        border-radius: 12px;
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+        border-radius: 10px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
       }
       .canvas-help-toggle {
         display: inline-flex;
-        min-height: 44px;
+        min-height: 40px;
+        padding: 6px 9px;
+        gap: 5px;
+        font-size: 0.78rem;
       }
+      #toolbar-toggle-button {
+        min-height: 40px;
+        padding: 6px 9px;
+        font-size: 0.78rem;
+      }
+      .canvas-help-header { padding: 8px 10px 7px; }
+      .canvas-help-header h2 { font-size: 0.82rem; }
+      .canvas-help-close { width: 32px; height: 32px; }
+      .canvas-help-content { padding: 3px 10px 9px; }
+      .canvas-help-group { padding-top: 7px; }
+      .canvas-help-group h3 { font-size: 0.7rem; }
+      .canvas-help-group p { font-size: 0.76rem; line-height: 1.38; }
       .canvas-help-mobile { display: block; }
       .canvas-help-desktop { display: none; }
       .canvas-help-header { padding: 12px 14px 10px; }
@@ -2024,11 +2039,17 @@
       .search-results {
         overscroll-behavior: contain;
       }
+      .toolbar {
+        gap: 6px;
+        padding: 7px;
+        border-radius: 9px;
+      }
       .toolbar button,
       .toolbar select,
       .toolbar-menu > summary {
-        min-height: 44px;
-        padding: 9px 12px;
+        min-height: 40px;
+        padding: 6px 9px;
+        font-size: 0.78rem;
       }
       .toolbar-menu-content {
         max-width: calc(100vw - 32px);
@@ -2038,9 +2059,17 @@
       }
       .minimap {
         width: 100%;
-        max-height: 190px;
+        max-height: 120px;
+        padding: 7px;
+        border-radius: 10px;
       }
-      #minimap-svg { max-height: 140px; }
+      .minimap-header {
+        gap: 5px;
+        margin-bottom: 5px;
+        font-size: 0.72rem;
+      }
+      .minimap-header strong { font-size: 0.78rem; }
+      #minimap-svg { max-height: 78px; border-radius: 7px; }
     }
     @media (max-width: 720px) and (orientation: landscape) {
       .contents-panel {
