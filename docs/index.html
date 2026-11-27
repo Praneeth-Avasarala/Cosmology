@@ -2911,7 +2911,7 @@
         if (!forceRestore && initialRestoreCanvasViewId !== navigationPageId) return false;
         const state = packageViewportStates[navigationPageId];
         if (!state) return false;
-        currentScale = clamp(state.scale, 0.2, 4);
+        currentScale = clamp(state.scale, getMinimumCanvasScale(), 4);
         setCssProps(canvas, { transform: "scale(" + currentScale + ")" });
         drawEdges();
         window.requestAnimationFrame(() => {
@@ -2969,6 +2969,19 @@
           width: Math.max(1, right - left),
           height: Math.max(1, bottom - top),
         };
+      }
+
+      function getMinimumCanvasScale() {
+        if (!viewport) return 0.2;
+        const fitBounds = getFitNodeBounds();
+        const fitPadding = 48;
+        const availableWidth = Math.max(100, viewport.clientWidth);
+        const availableHeight = Math.max(100, viewport.clientHeight);
+        const scaleX = availableWidth / (fitBounds.width + fitPadding * 2);
+        const scaleY = availableHeight / (fitBounds.height + fitPadding * 2);
+        // Match Reset's fit-to-canvas scale, but allow very large canvases to
+        // zoom out below the old fixed 20% floor.
+        return Math.max(0.001, Math.min(scaleX, scaleY, 1));
       }
 
       function focusNode(nodeId) {
@@ -4785,7 +4798,7 @@
         if (selectedCanvasArea === null) return;
         const availableWidth = Math.max(100, viewport.clientWidth - 48);
         const availableHeight = Math.max(100, viewport.clientHeight - 48);
-        currentScale = clamp(Math.min(availableWidth / selectedCanvasArea.width, availableHeight / selectedCanvasArea.height), 0.2, 4);
+        currentScale = clamp(Math.min(availableWidth / selectedCanvasArea.width, availableHeight / selectedCanvasArea.height), getMinimumCanvasScale(), 4);
         setCssProps(canvas, { transform: "scale(" + currentScale + ")" });
         drawEdges();
         scrollViewportToCanvasPoint(selectedCanvasArea.centerX, selectedCanvasArea.centerY, "auto");
@@ -4793,7 +4806,7 @@
       }
 
       function zoomAtPoint(clientX, clientY, factor) {
-        const nextScale = clamp(currentScale * factor, 0.2, 4);
+        const nextScale = clamp(currentScale * factor, getMinimumCanvasScale(), 4);
         if (nextScale === currentScale) return;
         const canvasRect = canvas.getBoundingClientRect();
         const viewportRect = viewport.getBoundingClientRect();
@@ -4969,7 +4982,7 @@
       window.zoomBy = function(factor) {
         cancelZoomAreaDrag();
         cancelCanvasPan();
-        currentScale = Math.max(0.2, Math.min(4, currentScale * factor));
+        currentScale = clamp(currentScale * factor, getMinimumCanvasScale(), 4);
         setCssProps(canvas, { transform: "scale(" + currentScale + ")" });
         drawEdges();
         updateMinimapViewport();
@@ -4978,13 +4991,8 @@
       window.resetZoom = function() {
         cancelZoomAreaDrag();
         cancelCanvasPan();
-        const fitPadding = 48;
         const fitBounds = getFitNodeBounds();
-        const availableWidth = Math.max(100, viewport.clientWidth);
-        const availableHeight = Math.max(100, viewport.clientHeight);
-        const scaleX = availableWidth / (fitBounds.width + fitPadding * 2);
-        const scaleY = availableHeight / (fitBounds.height + fitPadding * 2);
-        currentScale = Math.min(scaleX, scaleY, 1);
+        currentScale = getMinimumCanvasScale();
         setCssProps(canvas, { transform: "scale(" + currentScale + ")" });
         drawEdges();
         scrollViewportToCanvasPoint(fitBounds.left + fitBounds.width / 2, fitBounds.top + fitBounds.height / 2, "auto");
