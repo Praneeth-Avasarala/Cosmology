@@ -108,6 +108,88 @@
       gap: 6px 16px;
       margin-top: 8px;
     }
+    .canvas-assist-tools {
+      position: fixed;
+      z-index: 40;
+      top: 118px;
+      left: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 9px;
+      width: min(250px, calc(100vw - 36px));
+      max-height: calc(100dvh - 136px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 0 2px 8px 0;
+    }
+    .canvas-help-panel {
+      position: static;
+      z-index: auto;
+      width: 100%;
+      color: #e7edf5;
+      background: color-mix(in srgb, #2b2f36 94%, transparent);
+      border: 1px solid #313843;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.32);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .canvas-help-panel[hidden] { display: none; }
+    .canvas-help-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px 9px;
+      border-bottom: 1px solid #313843;
+    }
+    .canvas-help-header h2 { margin: 0; font-size: 0.95rem; font-weight: 650; }
+    .canvas-help-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      border-radius: 7px;
+      color: #aeb8c5;
+      background: transparent;
+      font-size: 1.35rem;
+      cursor: pointer;
+    }
+    .canvas-help-close:hover { color: #e7edf5; background: rgba(255,255,255,0.06); }
+    .canvas-help-content { padding: 4px 14px 12px; }
+    .canvas-help-group { padding-top: 9px; }
+    .canvas-help-group h3 { margin: 0 0 3px; color: #e7edf5; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.035em; text-transform: uppercase; }
+    .canvas-help-group p { margin: 0; color: #aeb8c5; font-size: 0.8rem; line-height: 1.45; }
+    .canvas-help-group strong { color: #e7edf5; font-weight: 650; }
+    .canvas-help-mobile { display: none; }
+    .canvas-help-toggle {
+      position: static;
+      z-index: auto;
+      display: inline-flex;
+      align-self: stretch;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      min-height: 42px;
+      box-sizing: border-box;
+      padding: 7px 12px;
+      border: 1px solid #313843;
+      border-radius: 10px;
+      color: #e7edf5;
+      background: #2b2f36;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .canvas-help-toggle[hidden] { display: none; }
+    .canvas-help-toggle span { display: inline-flex; align-items: center; justify-content: center; width: 19px; height: 19px; border-radius: 50%; color: #e7edf5; background: rgba(255,255,255,0.06); }
     .viewport {
       overflow: auto;
       padding: 16px 24px 28px;
@@ -992,17 +1074,18 @@
       background: #1d2229;
     }
 	.toolbar {
-	  position: absolute;
-	  top: calc(100% + 10px);
-	  right: 0;
-	  z-index: 50;
+	  position: static;
+	  z-index: auto;
 	  display: flex;
 	  flex: 0 0 auto;
 	  align-items: center;
 	  flex-wrap: wrap;
 	  gap: 8px;
-	  justify-content: flex-end;
-	  max-width: calc(100vw - 48px);
+	  flex-direction: column;
+	  align-items: stretch;
+	  justify-content: flex-start;
+	  width: 100%;
+	  max-width: none;
 	  box-sizing: border-box;
 	  padding: 10px;
 	  border: 1px solid #313843;
@@ -1016,14 +1099,16 @@
 	}
 	
     #toolbar-toggle-button {
-      grid-column: 3;
-      grid-row: 1;
-      justify-self: end;
-      align-self: center;
+      position: static;
+      grid-column: auto;
+      grid-row: auto;
+      justify-self: stretch;
+      align-self: stretch;
       z-index: 51;
       flex: 0 0 auto;
-      min-width: 92px;
-      min-height: 36px;
+      width: 100%;
+      min-width: 0;
+      min-height: 42px;
       border: 1px solid #313843;
       background: #2b2f36;
       color: #e7edf5;
@@ -1060,6 +1145,12 @@
       position: relative;
     }
     .toolbar-menu > summary {
+      position: relative;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      padding-right: 30px;
+      text-align: center;
       list-style: none;
       user-select: none;
     }
@@ -1067,8 +1158,9 @@
       display: none;
     }
     .toolbar-menu > summary::after {
+      position: absolute;
+      right: 11px;
       content: "▾";
-      margin-left: 7px;
     }
     .toolbar-menu[open] > summary::after {
       content: "▴";
@@ -1723,12 +1815,15 @@
       border-radius: 3px;
     }
     .minimap {
-      position: fixed;
-      right: 24px;
-      top: 64px;
+      position: relative;
+      left: auto;
+      right: auto;
+      top: auto;
       bottom: auto;
-      z-index: 20;
-      width: min(240px, calc(100vw - 32px));
+      z-index: auto;
+      width: 100%;
+      max-height: 220px;
+      overflow: auto;
       padding: 10px;
       border-radius: 14px;
       border: 1px solid #313843;
@@ -1767,7 +1862,9 @@
       display: block;
       width: 100%;
       height: auto;
+      max-height: 170px;
       aspect-ratio: 4640 / 2900;
+      object-fit: contain;
       border-radius: 10px;
       border: 1px solid #313843;
       overflow: hidden;
@@ -1821,10 +1918,10 @@
         line-height: 1.25;
       }
       #toolbar-toggle-button {
-        grid-column: 1;
-        grid-row: 2;
-        justify-self: end;
-        min-width: 80px;
+        grid-column: auto;
+        grid-row: auto;
+        justify-self: stretch;
+        min-width: 0;
         min-height: 44px;
         padding: 8px 12px;
         font-size: 0.8rem;
@@ -1834,6 +1931,30 @@
         margin-top: 7px;
         font-size: 0.8rem;
       }
+      .canvas-assist-tools {
+        top: max(128px, calc(env(safe-area-inset-top, 0px) + 112px));
+        left: max(10px, env(safe-area-inset-left, 0px));
+        width: min(210px, 62vw);
+        max-height: calc(var(--visual-viewport-height, 100dvh) - 24px);
+        gap: 7px;
+      }
+      .canvas-help-panel {
+        max-height: min(38dvh, 300px);
+        overflow: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+      }
+      .canvas-help-toggle {
+        display: inline-flex;
+        min-height: 44px;
+      }
+      .canvas-help-mobile { display: block; }
+      .canvas-help-desktop { display: none; }
+      .canvas-help-header { padding: 12px 14px 10px; }
+      .canvas-help-close { width: 36px; height: 36px; }
+      .canvas-help-content { padding: 4px 14px 14px; }
+      .canvas-help-group { padding-top: 11px; }
+      .canvas-help-group p { font-size: 0.88rem; }
       .viewport {
         padding: 12px max(12px, env(safe-area-inset-right, 0px)) 20px max(12px, env(safe-area-inset-left, 0px));
       }
@@ -1916,10 +2037,10 @@
         overscroll-behavior: contain;
       }
       .minimap {
-        right: 12px;
-        bottom: 12px;
-        width: min(180px, calc(100vw - 24px));
+        width: 100%;
+        max-height: 190px;
       }
+      #minimap-svg { max-height: 140px; }
     }
     @media (max-width: 720px) and (orientation: landscape) {
       .contents-panel {
@@ -2107,6 +2228,30 @@
         
       </div>
     </header>
+  </div>
+  <aside class="canvas-assist-tools" aria-label="Canvas assistance tools">
+  <aside id="canvas-help-panel" class="canvas-help-panel" aria-label="Canvas help" hidden>
+    <div class="canvas-help-header">
+      <h2>Explore this canvas</h2>
+      <button id="canvas-help-close" class="canvas-help-close" type="button" aria-label="Close help">×</button>
+    </div>
+    <div class="canvas-help-content">
+      <section class="canvas-help-group">
+        <h3>Explore</h3>
+        <p class="canvas-help-desktop">Drag the empty canvas to pan. Use the mouse wheel or zoom controls to zoom.</p>
+        <p class="canvas-help-mobile">Drag the empty canvas with one finger to pan. Pinch with two fingers to zoom.</p>
+      </section>
+      <section class="canvas-help-group">
+        <h3>Arrange</h3>
+        <p>Drag a card's top handle to move it. Drag a corner handle to resize it.</p>
+      </section>
+      <section class="canvas-help-group">
+        <h3>Interact</h3>
+        <p>Click or tap links and card contents. Open the <strong>Controls</strong> button for zoom, reset, folding, and other canvas tools.</p>
+      </section>
+    </div>
+  </aside>
+  <button id="canvas-help-toggle" class="canvas-help-toggle" type="button" aria-expanded="false" aria-controls="canvas-help-panel">Help <span aria-hidden="true">?</span></button>
     <button
       id="toolbar-toggle-button"
       type="button"
@@ -2128,11 +2273,32 @@
       <button id="focus-controls-visibility-button" class="folding-action-control" type="button" onclick="toggleFocusControlsVisibility()" aria-pressed="false" hidden>Hide focus controls</button>
       <button id="folding-focus-exit-button" class="folding-action-control" type="button" onclick="exitBranchFocus()" disabled hidden>Exit focus</button>
     </div></details>
-    <button id="minimap-toolbar-button" type="button" onclick="toggleMinimap()">Minimap</button>
+    <button id="minimap-toolbar-button" type="button" onclick="toggleMinimap()" aria-pressed="true">Hide minimap</button>
     <button id="search-toolbar-button" type="button" onclick="openSearch()">Search...</button>
     <button id="contents-toolbar-button" type="button" onclick="toggleContents()" aria-pressed="false">Navigation</button>
     </div>
-  </div>
+
+  <aside id="minimap-panel" class="minimap" aria-label="Canvas minimap" >
+    <div id="minimap-drag-handle" class="minimap-header" title="Move minimap">
+      <div class="minimap-header-copy">
+        <strong>Minimap</strong>
+      </div>
+    </div>
+    <svg id="minimap-svg" viewBox="0 0 4640 2900" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <rect class="minimap-background" x="0" y="0" width="4640" height="2900"></rect>
+      <rect class="minimap-node" data-node-id="f4179ec3aafe4256" data-node-shape="" data-node-type="text" x="1000" y="889" width="720" height="291" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="8719427bbd03c359" data-node-shape="" data-node-type="text" x="120" y="889" width="740" height="475" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="caf0480fe76a3551" data-node-shape="" data-node-type="text" x="2823" y="1980" width="760" height="800" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="97ae36b3bc312ba4" data-node-shape="" data-node-type="text" x="1880" y="1706" width="619" height="274" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="def62426ca206582" data-node-shape="" data-node-type="text" x="2087" y="1101" width="412" height="158" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="c01f1c084ace0782" data-node-shape="" data-node-type="text" x="2208" y="400" width="582" height="285" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="e84e4fea8c1eeea2" data-node-shape="" data-node-type="text" x="3095" y="120" width="488" height="152" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="ddabe167c15e8301" data-node-shape="" data-node-type="text" x="4000" y="685" width="520" height="299" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect class="minimap-node" data-node-id="d461e4d9d790169e" data-node-shape="" data-node-type="text" x="3920" y="1259" width="500" height="286" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
+      <rect id="minimap-viewport" class="minimap-viewport" x="0" y="0" width="0" height="0"></rect>
+    </svg>
+  </aside>
+  </aside>
   <div class="viewport">
     <div id="zoom-area-selection" class="zoom-area-selection" hidden></div>
     <div id="zoom-area-hint" class="zoom-area-hint" role="status" hidden>Shift + drag to zoom · Esc to cancel</div>
@@ -2424,26 +2590,6 @@
       
     </div>
   </div>
-  <aside id="minimap-panel" class="minimap" aria-label="Canvas minimap" >
-    <div id="minimap-drag-handle" class="minimap-header" title="Move minimap">
-      <div class="minimap-header-copy">
-        <strong>Minimap</strong>
-      </div>
-    </div>
-    <svg id="minimap-svg" viewBox="0 0 4640 2900" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <rect class="minimap-background" x="0" y="0" width="4640" height="2900"></rect>
-      <rect class="minimap-node" data-node-id="f4179ec3aafe4256" data-node-shape="" data-node-type="text" x="1000" y="889" width="720" height="291" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="8719427bbd03c359" data-node-shape="" data-node-type="text" x="120" y="889" width="740" height="475" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="caf0480fe76a3551" data-node-shape="" data-node-type="text" x="2823" y="1980" width="760" height="800" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="97ae36b3bc312ba4" data-node-shape="" data-node-type="text" x="1880" y="1706" width="619" height="274" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="def62426ca206582" data-node-shape="" data-node-type="text" x="2087" y="1101" width="412" height="158" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="c01f1c084ace0782" data-node-shape="" data-node-type="text" x="2208" y="400" width="582" height="285" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="e84e4fea8c1eeea2" data-node-shape="" data-node-type="text" x="3095" y="120" width="488" height="152" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="ddabe167c15e8301" data-node-shape="" data-node-type="text" x="4000" y="685" width="520" height="299" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect class="minimap-node" data-node-id="d461e4d9d790169e" data-node-shape="" data-node-type="text" x="3920" y="1259" width="500" height="286" rx="10" ry="10" fill="rgba(255,255,255,0.14)" stroke="#4a5565"></rect>
-      <rect id="minimap-viewport" class="minimap-viewport" x="0" y="0" width="0" height="0"></rect>
-    </svg>
-  </aside>
   <div id="search-overlay" class="search-overlay" hidden>
     <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="search-title" aria-describedby="search-scope search-summary">
       <div class="search-panel-header">
@@ -2483,6 +2629,9 @@
       const toolbar = document.getElementById("canvas-toolbar");
       const toolbarToggleButton = document.getElementById("toolbar-toggle-button");
       const canvasShell = document.getElementById("canvas-shell");
+      const canvasHelpPanel = document.getElementById("canvas-help-panel");
+      const canvasHelpToggle = document.getElementById("canvas-help-toggle");
+      const canvasHelpClose = document.getElementById("canvas-help-close");
       const edgeLayer = document.getElementById("edge-layer");
       const canvas = document.getElementById("canvas");
       const viewport = document.querySelector(".viewport");
@@ -2586,6 +2735,29 @@
         if (!visualViewport) return;
         document.documentElement.style.setProperty("--visual-viewport-height", visualViewport.height + "px");
         document.documentElement.style.setProperty("--visual-viewport-offset-top", visualViewport.offsetTop + "px");
+      }
+
+      let canvasHelpDismissed = false;
+      function setCanvasHelpOpen(open, remember = false) {
+        if (!canvasHelpPanel || !canvasHelpToggle) return;
+        canvasHelpPanel.hidden = !open;
+        canvasHelpToggle.hidden = open;
+        canvasHelpToggle.setAttribute("aria-expanded", String(open));
+        if (remember) {
+          canvasHelpDismissed = !open;
+          try { window.localStorage.setItem("canvas-html-exporter-help-dismissed", open ? "0" : "1"); } catch (_) { /* Storage may be unavailable for local files. */ }
+        }
+      }
+      if (canvasHelpPanel && canvasHelpToggle) {
+        try { canvasHelpDismissed = window.localStorage.getItem("canvas-html-exporter-help-dismissed") === "1"; } catch (_) { /* Storage may be unavailable for local files. */ }
+        const isDesktopHelp = window.matchMedia("(min-width: 721px)").matches;
+        setCanvasHelpOpen(isDesktopHelp && !canvasHelpDismissed);
+        canvasHelpToggle.hidden = isDesktopHelp && !canvasHelpDismissed;
+        canvasHelpToggle.addEventListener("click", () => setCanvasHelpOpen(canvasHelpPanel.hidden, true));
+        if (canvasHelpClose) canvasHelpClose.addEventListener("click", () => setCanvasHelpOpen(false, true));
+        window.addEventListener("resize", () => {
+          if (window.matchMedia("(min-width: 721px)").matches && !canvasHelpDismissed) setCanvasHelpOpen(true);
+        });
       }
 
       updateVisualViewportMetrics();
@@ -3658,6 +3830,7 @@
         if (!minimapPanel) return;
         const next = clampMinimapPosition(left, top);
         setCssProps(minimapPanel, {
+          position: "fixed",
           left: next.left + "px",
           top: next.top + "px",
           right: "auto",
@@ -3666,19 +3839,7 @@
       }
 
       function placeMinimapUnderToolbar() {
-		  if (!minimapPanel) return;
-
-		  const panelWidth = minimapPanel.offsetWidth || 240;
-
-		  const anchor = toolbar && !toolbar.hidden
-			? toolbar
-			: document.getElementById("toolbar-toggle-button");
-
-		  const anchorRect = anchor ? anchor.getBoundingClientRect() : null;
-		  const top = (anchorRect ? anchorRect.bottom : 48) + 8;
-		  const left = window.innerWidth - panelWidth - 24;
-
-		  applyMinimapPosition(left, top);
+        // The minimap now lives in the left assistance rail; no viewport positioning is needed.
       }
 
       function parsePageHash(hash) {
@@ -3963,6 +4124,7 @@
         if (minimapToolbarButton) {
           minimapToolbarButton.classList.add("is-active");
           minimapToolbarButton.setAttribute("aria-pressed", "true");
+          minimapToolbarButton.textContent = "Hide minimap";
         }
         updateMinimapViewport();
       }
@@ -3972,6 +4134,7 @@
         if (minimapToolbarButton) {
           minimapToolbarButton.classList.remove("is-active");
           minimapToolbarButton.setAttribute("aria-pressed", "false");
+          minimapToolbarButton.textContent = "Show minimap";
         }
       }
 
