@@ -10,10 +10,9 @@
   <!-- Exported by canvas-html-exporter v1.6.0 -->
   <style>
     :root { --canvas-color-0: rgb(171, 171, 171); --canvas-color-0-bg: rgba(171, 171, 171, 0.18); --canvas-color-1: rgb(251, 70, 76); --canvas-color-1-bg: rgba(251, 70, 76, 0.18); --canvas-color-2: rgb(233, 151, 63); --canvas-color-2-bg: rgba(233, 151, 63, 0.18); --canvas-color-3: rgb(224, 222, 113); --canvas-color-3-bg: rgba(224, 222, 113, 0.18); --canvas-color-4: rgb(68, 207, 110); --canvas-color-4-bg: rgba(68, 207, 110, 0.18); --canvas-color-5: rgb(83, 223, 221); --canvas-color-5-bg: rgba(83, 223, 221, 0.18); --canvas-color-6: rgb(168, 130, 255); --canvas-color-6-bg: rgba(168, 130, 255, 0.18); --contents-panel-width: min(420px, calc(100vw - 32px)); }
-    * { box-sizing: border-box; }
-
-    /* Dark, low-contrast scrollbars that fit the canvas workspace theme. */
+    /* Global sizing and dark, low-contrast scrollbars for the canvas workspace. */
     * {
+      box-sizing: border-box;
       scrollbar-color: rgba(190, 198, 210, 0.42) rgba(255, 255, 255, 0.045);
       scrollbar-width: thin;
     }
@@ -108,6 +107,7 @@
       gap: 6px 16px;
       margin-top: 8px;
     }
+    /* Floating assistance dock and its Help / Settings panels. */
     .canvas-assist-tools {
       position: fixed;
       z-index: 55;
@@ -152,14 +152,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
+      width: auto;
+      min-width: 76px;
+      min-height: 36px;
       height: 30px;
-      padding: 0;
-      border: 0;
+      padding: 0 12px;
+      border: 1px solid #313843;
       border-radius: 7px;
       color: #aeb8c5;
-      background: transparent;
-      font-size: 1.35rem;
+      background: rgba(255,255,255,0.06);
+      font-size: 0.78rem;
+      font-weight: 600;
       cursor: pointer;
     }
     .canvas-help-close:hover { color: #e7edf5; background: rgba(255,255,255,0.06); }
@@ -172,16 +175,6 @@
       border-top: 1px solid #313843;
       background: #2b2f36;
       border-radius: 0 0 12px 12px;
-    }
-    .canvas-help-close {
-      width: auto;
-      min-width: 76px;
-      min-height: 36px;
-      padding: 0 12px;
-      border: 1px solid #313843;
-      background: rgba(255,255,255,0.06);
-      font-size: 0.78rem;
-      font-weight: 600;
     }
     .canvas-help-content { padding: 4px 14px 12px; }
     .canvas-help-group { padding-top: 9px; }
@@ -1846,6 +1839,7 @@
       padding: 0 0.05em;
       border-radius: 3px;
     }
+    /* Floating canvas minimap. */
     .minimap {
       position: fixed;
       left: 18px;
@@ -1949,15 +1943,6 @@
         font-size: clamp(1.05rem, 5vw, 1.3rem);
         line-height: 1.25;
       }
-      #toolbar-toggle-button {
-        grid-column: auto;
-        grid-row: auto;
-        justify-self: stretch;
-        min-width: 0;
-        min-height: 44px;
-        padding: 8px 12px;
-        font-size: 0.8rem;
-      }
       .page-header-meta {
         gap: 5px 10px;
         margin-top: 7px;
@@ -1983,9 +1968,9 @@
         width: 46px;
         min-width: 46px;
         height: 46px;
-        min-height: 46px;
+        min-height: 40px;
         box-sizing: border-box;
-        padding: 0;
+        padding: 6px 9px;
         border: 1px solid #313843;
         border-radius: 12px;
         color: #e7edf5;
@@ -2013,10 +1998,10 @@
         top: max(126px, calc(env(safe-area-inset-top, 0px) + 112px));
         left: calc(max(10px, env(safe-area-inset-left, 0px)) + 56px);
         width: min(250px, calc(100vw - 78px));
-        max-height: min(42dvh, 300px);
+        max-height: min(32dvh, 240px);
         overflow: auto;
-        border-radius: 12px;
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.42);
+        border-radius: 10px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
       }
       .toolbar {
         position: fixed;
@@ -2030,40 +2015,20 @@
         box-sizing: border-box;
         background: #2b2f36;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.42);
+        gap: 6px;
+        padding: 7px;
+        border-radius: 9px;
       }
-      .canvas-help-panel {
-        max-height: min(32dvh, 240px);
-        overflow: auto;
-        border-radius: 10px;
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.38);
-      }
-      .canvas-help-toggle {
-        display: inline-flex;
-        min-height: 40px;
-        padding: 6px 9px;
-        gap: 0;
-        font-size: 0;
-      }
-      #toolbar-toggle-button {
-        min-height: 40px;
-        padding: 6px 9px;
-        font-size: 0;
-      }
-      .canvas-help-header { padding: 8px 10px 7px; }
       .canvas-help-header h2 { font-size: 0.82rem; }
       .canvas-help-close { min-width: 76px; min-height: 40px; width: auto; height: auto; }
       .canvas-help-footer { padding: 7px 10px; }
-      .canvas-help-content { padding: 3px 10px 9px; }
-      .canvas-help-group { padding-top: 7px; }
       .canvas-help-group h3 { font-size: 0.7rem; }
-      .canvas-help-group p { font-size: 0.76rem; line-height: 1.38; }
       .canvas-help-mobile { display: block; }
       .canvas-help-desktop { display: none; }
       .canvas-help-header { padding: 12px 14px 10px; }
-      .canvas-help-close { min-width: 76px; min-height: 40px; width: auto; height: auto; }
       .canvas-help-content { padding: 4px 14px 14px; }
       .canvas-help-group { padding-top: 11px; }
-      .canvas-help-group p { font-size: 0.88rem; }
+      .canvas-help-group p { font-size: 0.88rem; line-height: 1.38; }
       .viewport {
         padding: 12px max(12px, env(safe-area-inset-right, 0px)) 20px max(12px, env(safe-area-inset-left, 0px));
       }
@@ -2133,11 +2098,6 @@
       .search-results {
         overscroll-behavior: contain;
       }
-      .toolbar {
-        gap: 6px;
-        padding: 7px;
-        border-radius: 9px;
-      }
       .toolbar button,
       .toolbar select,
       .toolbar-menu > summary {
@@ -2168,12 +2128,11 @@
       }
       .minimap-header {
         gap: 5px;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
         font-size: 0.72rem;
       }
       .minimap-header strong { font-size: 0.78rem; }
       #minimap-svg { max-height: 78px; border-radius: 7px; }
-      .minimap-header { margin-bottom: 4px; }
     }
     @media (max-width: 720px) and (orientation: landscape) {
       .contents-panel {
@@ -2362,10 +2321,10 @@
       </div>
     </header>
   </div>
-  <aside class="canvas-assist-tools" aria-label="Canvas assistance tools">
-  <aside id="canvas-help-panel" class="canvas-help-panel" aria-label="Canvas help" hidden>
+  <div class="canvas-assist-tools" role="group" aria-label="Canvas assistance tools">
+  <aside id="canvas-help-panel" class="canvas-help-panel" aria-labelledby="canvas-help-title" hidden>
     <div class="canvas-help-header">
-      <h2>Explore this canvas</h2>
+      <h2 id="canvas-help-title">Explore this canvas</h2>
     </div>
     <div class="canvas-help-content">
       <section class="canvas-help-group">
@@ -2394,7 +2353,7 @@
       aria-controls="canvas-toolbar"
       aria-label="Controls and settings"
     >Controls</button>
-    <div id="canvas-toolbar" class="toolbar" hidden>
+    <div id="canvas-toolbar" class="toolbar" role="group" aria-label="Canvas controls" hidden>
     <button type="button" onclick="zoomBy(1 / 1.15)">Zoom −</button>
     <button type="button" onclick="zoomBy(1.15)">Zoom +</button>
     <button type="button" onclick="resetZoom()">Reset</button>
@@ -2434,7 +2393,7 @@
       <rect id="minimap-viewport" class="minimap-viewport" x="0" y="0" width="0" height="0"></rect>
     </svg>
   </aside>
-  </aside>
+  </div>
   <div class="viewport">
     <div id="zoom-area-selection" class="zoom-area-selection" hidden></div>
     <div id="zoom-area-hint" class="zoom-area-hint" role="status" hidden>Shift + drag to zoom · Esc to cancel</div>
